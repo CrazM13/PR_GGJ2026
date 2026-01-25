@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://l7ry467kf5jr"]
+
+[ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_r5nwv"]
+[ext_resource type="Script" uid="uid://cj7y5vkr4q0xw" path="res://Scripts/Entities/ItemController.cs" id="2_s1f6e"]
+[ext_resource type="Resource" uid="uid://dlcnfu7uvo1k4" path="res://Data/TestItem.tres" id="3_8lkev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(32, 32)
+
+[node name="Item" type="CharacterBody2D"]
+collision_layer = 16384
+script = ExtResource("1_r5nwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("entity", "itemSprite")]
+script = ExtResource("2_s1f6e")
+entity = NodePath("..")
+item = ExtResource("3_8lkev")
+itemSprite = NodePath("../Sprite2D")
