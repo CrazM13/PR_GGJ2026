@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmd8caec5wqpi"]
+[gd_scene load_steps=6 format=3 uid="uid://cmd8caec5wqpi"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_y5hcb"]
 [ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="1_y6xdh"]
 [ext_resource type="Script" uid="uid://ccqpofds2qd8d" path="res://Scripts/Entities/PlayerInput.cs" id="3_2nftw"]
+[ext_resource type="Script" uid="uid://c36dwlj8nvald" path="res://Scripts/Entities/PunchArea.cs" id="4_2nftw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3icqa"]
 size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 32769
+collision_layer = 32769
+collision_mask = 16385
 script = ExtResource("1_y5hcb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +34,9 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32768
+collision_mask = 16384
+script = ExtResource("4_2nftw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 96, 96, 96, -96)

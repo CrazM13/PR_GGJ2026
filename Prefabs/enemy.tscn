@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3h23qn75o7n0"]
+[gd_scene load_steps=8 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
 [ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="2_t4g6b"]
 [ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
+[ext_resource type="Script" uid="uid://4qm6rnrhp68d" path="res://Scripts/Entities/ItemSource.cs" id="4_n7q57"]
+[ext_resource type="Resource" uid="uid://dlcnfu7uvo1k4" path="res://Data/TestItem.tres" id="5_80imi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_govpq"]
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_mask = 16385
+collision_layer = 16385
 script = ExtResource("1_80imi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -22,6 +24,11 @@ texture = ExtResource("2_t4g6b")
 script = ExtResource("4_kuc4i")
 entity = NodePath("..")
 debug = NodePath("../Label")
+
+[node name="Drop" type="Node" parent="AI" node_paths=PackedStringArray("entity")]
+script = ExtResource("4_n7q57")
+entity = NodePath("../..")
+item = ExtResource("5_80imi")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
