@@ -9,6 +9,7 @@
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_mask = 16385
 script = ExtResource("1_80imi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -38,3 +39,4 @@ updating = true
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+color = Color(1, 1, 1, 0.2509804)
