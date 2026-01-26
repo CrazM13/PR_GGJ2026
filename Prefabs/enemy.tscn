@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
-[ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="2_t4g6b"]
+[ext_resource type="Texture2D" uid="uid://b0fs8mw3s2y1x" path="res://Images/Characters/Enemies/Enemy_1.png" id="2_80imi"]
 [ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
 [ext_resource type="Script" uid="uid://4qm6rnrhp68d" path="res://Scripts/Entities/ItemSource.cs" id="4_n7q57"]
@@ -18,7 +18,7 @@ script = ExtResource("1_80imi")
 shape = SubResource("RectangleShape2D_govpq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_t4g6b")
+texture = ExtResource("2_80imi")
 
 [node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug")]
 script = ExtResource("4_kuc4i")

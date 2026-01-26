@@ -33,14 +33,29 @@ zoom = Vector2(0.5, 0.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+z_index = -100
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32768
 collision_mask = 16384
 script = ExtResource("4_2nftw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 0, 96, 96, 96, -96)
+polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 color = Color(1, 1, 1, 0.1254902)
-polygon = PackedVector2Array(0, 0, 96, 96, 96, -96)
+polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)

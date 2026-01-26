@@ -11,11 +11,14 @@ public partial class ItemSource : Node {
 
 		if (entity.GetHealth() <= 0) {
 			if (item != null) {
-				Node newNode = GD.Load<PackedScene>(item.prefabPath).Instantiate();
+				Node2D newNode = GD.Load<PackedScene>(item.prefabPath).Instantiate<Node2D>();
+				newNode.GlobalPosition = entity.GlobalPosition;
 				this.GetTree().CurrentScene.AddChild(newNode);
 			}
-			entity.QueueFree();
+
+			this.QueueFree();
 		}
+
 	}
 
 }

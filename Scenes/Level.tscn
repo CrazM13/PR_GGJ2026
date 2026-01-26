@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://dqrnhme1jchsl"]
+[gd_scene load_steps=8 format=4 uid="uid://dqrnhme1jchsl"]
 
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="1_0ba56"]
 [ext_resource type="TileSet" uid="uid://qebm80iwtbla" path="res://Data/CollisionTiles.tres" id="2_vsvp5"]
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="3_8rbpu"]
 [ext_resource type="PackedScene" uid="uid://d3h23qn75o7n0" path="res://Prefabs/enemy.tscn" id="4_fuudy"]
 [ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="5_xylue"]
+[ext_resource type="AudioStream" uid="uid://d1cebcbntf8j6" path="res://Audio/Sneak_VEcho.wav" id="6_tj5wv"]
+[ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_ienac"]
 
 [node name="Level" type="Node2D"]
 
@@ -80,5 +82,14 @@ nextNode = NodePath("../wp8")
 position = Vector2(-64, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp1")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tj5wv")
+volume_db = -10.0
+autoplay = true
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("7_ienac")
+transitionPath = "uid://trmcmbumx5wm"
 
 [editable path="Enemy"]

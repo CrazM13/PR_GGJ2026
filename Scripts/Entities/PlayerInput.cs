@@ -37,6 +37,10 @@ public partial class PlayerInput : Node {
 		ItemData held = inventory.GetStoredItem();
 		heldSprite.Texture = held?.carryingSprite;
 		entity.CollisionLayer = (uint) (held?.id == "disguise" ? 0 : 32768);
+
+		if (entity.GetHealth() <= 0) {
+			SceneManager.Instance.ReloadScene();
+		}
 	}
 
 }
