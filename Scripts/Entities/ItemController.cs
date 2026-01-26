@@ -3,6 +3,8 @@ using System;
 
 public partial class ItemController : Node {
 
+	[Signal] public delegate void OnItemChangeEventHandler(ItemData item);
+
 	[Export] private Entity entity;
 	[Export] private ItemData item;
 	[Export] private Sprite2D itemSprite;
@@ -25,6 +27,8 @@ public partial class ItemController : Node {
 			} else {
 				entity.QueueFree();
 			}
+
+			EmitSignal(SignalName.OnItemChange, item);
 		}
 	}
 
