@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmd8caec5wqpi"]
+
+[ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_y5hcb"]
+[ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="1_y6xdh"]
+[ext_resource type="Script" uid="uid://ccqpofds2qd8d" path="res://Scripts/Entities/PlayerInput.cs" id="3_2nftw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3icqa"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_y5hcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3icqa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y6xdh")
+offset = Vector2(0, -16)
+
+[node name="HeldSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="Controller" type="Node" parent="." node_paths=PackedStringArray("entity", "heldSprite")]
+script = ExtResource("3_2nftw")
+entity = NodePath("..")
+heldSprite = NodePath("../HeldSprite")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

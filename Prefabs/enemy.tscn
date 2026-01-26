@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3h23qn75o7n0"]
+
+[ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
+[ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="2_t4g6b"]
+[ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
+[ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_govpq"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_80imi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_govpq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_t4g6b")
+
+[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug")]
+script = ExtResource("4_kuc4i")
+entity = NodePath("..")
+debug = NodePath("../Label")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "display", "collisionPolygon")]
+collision_mask = 32768
+script = ExtResource("3_g7nnu")
+enemy = NodePath("../AI")
+display = NodePath("Polygon2D")
+collisionPolygon = NodePath("CollisionPolygon2D")
+updating = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
