@@ -41,6 +41,7 @@ enemy = NodePath("../AI")
 display = NodePath("Polygon2D")
 collisionPolygon = NodePath("CollisionPolygon2D")
 updating = true
+maxQuality = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)

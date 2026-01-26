@@ -19,12 +19,13 @@ public partial class ViewCone : Area2D {
 	private bool playerInSight;
 
 	private int realQuality;
+	private bool shouldUpdate;
 
 	public override void _Ready() {
 		realQuality = maxQuality;
 		enemy.AssignViewCone(this);
 
-		UpdateVisionCone();
+		shouldUpdate = true;
 
 		// Connect signals
 		BodyEntered += OnBodyEntered;
@@ -38,8 +39,9 @@ public partial class ViewCone : Area2D {
 			enemy.AlertOfPlayer(PlayerInput.playerPosition);
 		}
 
-		if (updating) {
+		if (shouldUpdate) {
 			UpdateVisionCone();
+			shouldUpdate = updating;
 		}
 
 	}

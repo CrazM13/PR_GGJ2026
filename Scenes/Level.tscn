@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqrnhme1jchsl"]
+[gd_scene load_steps=9 format=4 uid="uid://dqrnhme1jchsl"]
 
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="1_0ba56"]
 [ext_resource type="TileSet" uid="uid://qebm80iwtbla" path="res://Data/CollisionTiles.tres" id="2_vsvp5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="5_xylue"]
 [ext_resource type="AudioStream" uid="uid://d1cebcbntf8j6" path="res://Audio/Sneak_VEcho.wav" id="6_tj5wv"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_ienac"]
+[ext_resource type="PackedScene" uid="uid://l7ry467kf5jr" path="res://Prefabs/TestItem.tscn" id="8_5rrr5"]
 
 [node name="Level" type="Node2D"]
 
@@ -39,46 +40,55 @@ tile_set = ExtResource("2_vsvp5")
 position = Vector2(288, 480)
 
 [node name="AI" parent="Enemy" index="2" node_paths=PackedStringArray("pathNode")]
-pathNode = NodePath("../../Path1/wp1")
+pathNode = NodePath("../../Paths/Path1/wp1")
 
-[node name="Path1" type="Node2D" parent="."]
+[node name="Enemy2" parent="." instance=ExtResource("4_fuudy")]
+position = Vector2(800, -96)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_fuudy")]
+position = Vector2(928, -96)
+rotation = 3.1415927
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path1" type="Node2D" parent="Paths"]
 position = Vector2(288, 480)
 
-[node name="wp1" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp1" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp2")
 
-[node name="wp2" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp2" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-64, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp3")
 
-[node name="wp3" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp3" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-128, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp4")
 
-[node name="wp4" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp4" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-192, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp5")
 
-[node name="wp5" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp5" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-256, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp6")
 
-[node name="wp6" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp6" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-192, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp7")
 
-[node name="wp7" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp7" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-128, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp8")
 
-[node name="wp8" type="Node2D" parent="Path1" node_paths=PackedStringArray("nextNode")]
+[node name="wp8" type="Node2D" parent="Paths/Path1" node_paths=PackedStringArray("nextNode")]
 position = Vector2(-64, 0)
 script = ExtResource("5_xylue")
 nextNode = NodePath("../wp1")
@@ -91,5 +101,8 @@ autoplay = true
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("7_ienac")
 transitionPath = "uid://trmcmbumx5wm"
+
+[node name="Item" parent="." instance=ExtResource("8_5rrr5")]
+position = Vector2(1568, -96)
 
 [editable path="Enemy"]
