@@ -35,7 +35,6 @@ region_rect = Rect2(32, 32, 64, 64)
 
 [node name="HoldTexture" type="Sprite2D" parent="Player"]
 position = Vector2(0, -40)
-region_enabled = true
 region_rect = Rect2(32, 32, 64, 64)
 
 [node name="Node" type="Node" parent="Player" node_paths=PackedStringArray("entity", "heldSprite")]

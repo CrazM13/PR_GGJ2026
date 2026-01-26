@@ -34,7 +34,9 @@ public partial class PlayerInput : Node {
 
 		playerPosition = entity.GlobalPosition;
 
-		heldSprite.Texture = inventory.GetStoredItem()?.carryingSprite;
+		ItemData held = inventory.GetStoredItem();
+		heldSprite.Texture = held?.carryingSprite;
+		entity.CollisionLayer = (uint) (held?.id == "disguise" ? 0 : 32768);
 	}
 
 }
