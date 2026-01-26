@@ -36,7 +36,8 @@ public partial class EnemyController : Node {
 		base._Process(delta);
 
 		if (entity.GetHealth() <= 0) {
-			currentState = EnemyState.DISABLED;
+			currentState = EnemyState.TRACK;
+			entity.SetHealth(1);
 		}
 
 		switch (currentState) {

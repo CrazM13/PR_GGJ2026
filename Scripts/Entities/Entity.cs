@@ -275,7 +275,7 @@ public partial class Entity : CharacterBody2D {
 
 	public void Damage() {
 		health -= 1;
-		Modulate = Colors.Red;
+		Modulate = Colors.Gray;
 	}
 
 	public int GetHealth() {
