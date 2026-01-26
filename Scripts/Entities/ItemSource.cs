@@ -13,7 +13,7 @@ public partial class ItemSource : Node {
 			if (item != null) {
 				Node2D newNode = GD.Load<PackedScene>(item.prefabPath).Instantiate<Node2D>();
 				newNode.GlobalPosition = entity.GlobalPosition;
-				this.GetTree().CurrentScene.AddChild(newNode);
+				entity.GetParent().AddChild(newNode);
 			}
 
 			this.QueueFree();

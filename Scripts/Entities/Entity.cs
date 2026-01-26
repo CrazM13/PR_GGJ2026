@@ -5,6 +5,8 @@ public partial class Entity : CharacterBody2D {
 	[Export] private float BaseSpeed { get; set; } = 100.0f;
 	[Export] private float BounceDistance { get; set; } = 16.0f;
 	[Export] private int MaxHealth { get; set; } = 1;
+	[Export] private bool SlowTurn { get; set; } = false;
+	[Export] private float TurnSpeed { get; set; } = 5.0f;
 
 	private Vector2 facingDirection = Vector2.Right;
 	private Vector2 targetPosition;
@@ -14,6 +16,8 @@ public partial class Entity : CharacterBody2D {
 
 	private bool shouldBounce = false;
 	private bool isKnockedBack = false;
+	private bool isTurning = false;
+	private Vector2 targetFacingDirection = Vector2.Right;
 
 	private Vector2 knockbackDirection = Vector2.Zero;
 	private float knockbackStrength = 0.0f;
@@ -38,6 +42,8 @@ public partial class Entity : CharacterBody2D {
 			HandleBounceAnimation(delta);
 		} else if (isKnockedBack) {
 			HandleKnockback(delta);
+		} else if (isTurning) {
+			HandleTurn(delta);
 		} else if (isMoving) {
 			HandleMovement(delta);
 		}
@@ -91,6 +97,39 @@ public partial class Entity : CharacterBody2D {
 		GlobalPosition = knockbackPosition;
 	}
 
+	private void HandleTurn(double delta) {
+		// Calculate the angle difference between current and target direction
+		float currentAngle = Mathf.Atan2(facingDirection.Y, facingDirection.X);
+		float targetAngle = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
+		
+		// Calculate the shortest angle difference
+		float angleDiff = targetAngle - currentAngle;
+		
+		// Normalize the angle difference to [-π, π]
+		while (angleDiff > Mathf.Pi) angleDiff -= 2 * Mathf.Pi;
+		while (angleDiff < -Mathf.Pi) angleDiff += 2 * Mathf.Pi;
+		
+		// Calculate turn speed based on TurnSpeed export
+		float turnAmount = angleDiff * (float)delta * TurnSpeed;
+		
+		// Check if we've completed the turn
+		if (Mathf.Abs(angleDiff) < 0.01f || Mathf.Abs(turnAmount) >= Mathf.Abs(angleDiff)) {
+			// Complete the turn
+			facingDirection = targetFacingDirection;
+			Rotation = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
+			isTurning = false;
+			
+			// Start movement after turning is complete
+			if (isMoving) {
+				SetupMovement(targetPosition);
+			}
+		} else {
+			// Continue turning
+			Rotation += turnAmount;
+			facingDirection = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation));
+		}
+	}
+
 	private void HandleMovement(double delta) {
 		moveTimer += (float) delta;
 		float progress = moveTimer * (BaseSpeed / TileUtils.TileSize);
@@ -113,14 +152,29 @@ public partial class Entity : CharacterBody2D {
 			return true;
 
 		Vector2 direction = (targetPixel - GlobalPosition).Normalized();
-		FaceDirection(direction);
-
-		if (IsPositionValid(targetPixel)) {
-			SetupMovement(targetPixel);
+		
+		// Check if we need to turn
+		bool needsTurn = SlowTurn && direction != facingDirection;
+		
+		if (needsTurn) {
+			// Start turning first
+			targetFacingDirection = direction;
+			isTurning = true;
+			isMoving = false;
+			// Store the target for later use
+			targetPosition = targetPixel;
+			startingPosition = GlobalPosition;
 			return true;
 		} else {
-			PerformBounceAnimation(targetPixel);
-			return false;
+			FaceDirection(direction);
+			
+			if (IsPositionValid(targetPixel)) {
+				SetupMovement(targetPixel);
+				return true;
+			} else {
+				PerformBounceAnimation(targetPixel);
+				return false;
+			}
 		}
 	}
 
@@ -216,7 +270,7 @@ public partial class Entity : CharacterBody2D {
 	}
 
 	public bool IsMoving() {
-		return isMoving || shouldBounce;
+		return isMoving || shouldBounce || isTurning;
 	}
 
 	public void Damage() {

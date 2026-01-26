@@ -1,14 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmd8caec5wqpi"]
+[gd_scene load_steps=10 format=3 uid="uid://cmd8caec5wqpi"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_y5hcb"]
 [ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="1_y6xdh"]
 [ext_resource type="Script" uid="uid://ccqpofds2qd8d" path="res://Scripts/Entities/PlayerInput.cs" id="3_2nftw"]
 [ext_resource type="Script" uid="uid://c36dwlj8nvald" path="res://Scripts/Entities/PunchArea.cs" id="4_2nftw"]
+[ext_resource type="Script" uid="uid://blktf53olakut" path="res://Scripts/Utils/SourceCamera.cs" id="4_knrd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3icqa"]
 size = Vector2(32, 32)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_knrd4"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_knrd4"]
+offsets = PackedFloat32Array(0, 0.684466)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hck1p"]
+gradient = SubResource("Gradient_knrd4")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
+light_mask = 257
+visibility_layer = 257
 collision_layer = 32769
 collision_mask = 16385
 script = ExtResource("1_y5hcb")
@@ -30,8 +47,7 @@ heldSprite = NodePath("../HeldSprite")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+script = ExtResource("4_knrd4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 layer = -100
@@ -49,6 +65,7 @@ size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
+visibility_layer = 256
 collision_layer = 32768
 collision_mask = 16384
 script = ExtResource("4_2nftw")
@@ -57,5 +74,12 @@ script = ExtResource("4_2nftw")
 polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
-color = Color(1, 1, 1, 0.1254902)
+visibility_layer = 256
+color = Color(1, 1, 1, 0.5019608)
 polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)
+
+[node name="Lighting" type="Sprite2D" parent="."]
+visibility_layer = 256
+material = SubResource("CanvasItemMaterial_knrd4")
+scale = Vector2(16, 16)
+texture = SubResource("GradientTexture2D_hck1p")

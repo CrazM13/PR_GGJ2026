@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://v3us68kawo3u" path="res://Prefabs/Gate.tscn" id="9_or7tv"]
 
 [node name="Level" type="Node2D"]
+visibility_layer = 257
 
 [node name="Player" parent="." instance=ExtResource("3_8rbpu")]
 position = Vector2(32, 96)
