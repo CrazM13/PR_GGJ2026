@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://by5akg3y0itto"]
+
+[ext_resource type="Texture2D" uid="uid://cb1ldp5bp06ae" path="res://Images/Items/Disguise_Item.png" id="1_5wcud"]
+[ext_resource type="Script" uid="uid://8u4di8kjodit" path="res://Scripts/Items/ItemData.cs" id="1_oicl3"]
+
+[resource]
+script = ExtResource("1_oicl3")
+prefabPath = "res://Prefabs/DisguiseItem.tscn"
+carryingSprite = ExtResource("1_5wcud")
+id = "disguise"
+metadata/_custom_type_script = "uid://8u4di8kjodit"

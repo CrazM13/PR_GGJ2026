@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://2whjoountp17"]
+
+[ext_resource type="PackedScene" uid="uid://l7ry467kf5jr" path="res://Prefabs/TestItem.tscn" id="1_whdmw"]
+[ext_resource type="Texture2D" uid="uid://c21qeg23mrf41" path="res://Images/Masks/Mask_2.png" id="2_qqyea"]
+[ext_resource type="Resource" uid="uid://cbcpqja1u6ayw" path="res://Data/Items/Mask2Item.tres" id="2_wxyvw"]
+
+[node name="MaskItem" instance=ExtResource("1_whdmw")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_qqyea")
+
+[node name="Node" parent="." index="2"]
+item = ExtResource("2_wxyvw")

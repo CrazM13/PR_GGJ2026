@@ -21,6 +21,7 @@ public partial class ItemController : Node {
 			if (lostItem != null) {
 				item = lostItem;
 				itemSprite.Texture = lostItem.carryingSprite;
+				entity.SetHealth(1);
 			} else {
 				entity.QueueFree();
 			}

@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="5_xylue"]
 [ext_resource type="AudioStream" uid="uid://d1cebcbntf8j6" path="res://Audio/Sneak_VEcho.wav" id="6_tj5wv"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_ienac"]
-[ext_resource type="PackedScene" uid="uid://l7ry467kf5jr" path="res://Prefabs/TestItem.tscn" id="8_5rrr5"]
+[ext_resource type="PackedScene" uid="uid://n2ixwur7yvuy" path="res://Prefabs/Mask1Item.tscn" id="8_5rrr5"]
 
 [node name="Level" type="Node2D"]
 
@@ -102,7 +102,7 @@ autoplay = true
 script = ExtResource("7_ienac")
 transitionPath = "uid://trmcmbumx5wm"
 
-[node name="Item" parent="." instance=ExtResource("8_5rrr5")]
+[node name="MaskItem" parent="." instance=ExtResource("8_5rrr5")]
 position = Vector2(1568, -96)
 
 [editable path="Enemy"]

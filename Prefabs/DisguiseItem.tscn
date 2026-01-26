@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://6adeatgr3ned"]
+
+[ext_resource type="PackedScene" uid="uid://l7ry467kf5jr" path="res://Prefabs/TestItem.tscn" id="1_hbpqs"]
+[ext_resource type="Resource" uid="uid://by5akg3y0itto" path="res://Data/Items/DisguiseItem.tres" id="2_3nrfv"]
+[ext_resource type="Texture2D" uid="uid://cb1ldp5bp06ae" path="res://Images/Items/Disguise_Item.png" id="2_oumq6"]
+
+[node name="DisguiseItem" instance=ExtResource("1_hbpqs")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_oumq6")
+
+[node name="Node" parent="." index="2"]
+item = ExtResource("2_3nrfv")

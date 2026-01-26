@@ -227,4 +227,8 @@ public partial class Entity : CharacterBody2D {
 	public int GetHealth() {
 		return health;
 	}
+
+	internal void SetHealth(int v) {
+		health = v;
+	}
 }

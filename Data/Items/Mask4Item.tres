@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cak23w40fofl"]
+
+[ext_resource type="Texture2D" uid="uid://c7omwaj2b2a00" path="res://Images/Masks/Mask_4.png" id="1_o0edi"]
+[ext_resource type="Script" uid="uid://8u4di8kjodit" path="res://Scripts/Items/ItemData.cs" id="2_capdp"]
+
+[resource]
+script = ExtResource("2_capdp")
+prefabPath = "res://Prefabs/Mask4Item.tscn"
+carryingSprite = ExtResource("1_o0edi")
+id = "mask4"
+metadata/_custom_type_script = "uid://8u4di8kjodit"
