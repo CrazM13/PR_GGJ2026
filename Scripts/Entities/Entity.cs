@@ -101,26 +101,27 @@ public partial class Entity : CharacterBody2D {
 		// Calculate the angle difference between current and target direction
 		float currentAngle = Mathf.Atan2(facingDirection.Y, facingDirection.X);
 		float targetAngle = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
-		
+
 		// Calculate the shortest angle difference
 		float angleDiff = targetAngle - currentAngle;
-		
+
 		// Normalize the angle difference to [-π, π]
 		while (angleDiff > Mathf.Pi) angleDiff -= 2 * Mathf.Pi;
 		while (angleDiff < -Mathf.Pi) angleDiff += 2 * Mathf.Pi;
-		
+
 		// Calculate turn speed based on TurnSpeed export
 		float turnAmount = angleDiff * (float)delta * TurnSpeed;
-		
+
 		// Check if we've completed the turn
 		if (Mathf.Abs(angleDiff) < 0.01f || Mathf.Abs(turnAmount) >= Mathf.Abs(angleDiff)) {
 			// Complete the turn
 			facingDirection = targetFacingDirection;
 			Rotation = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
 			isTurning = false;
-			
+
 			// Start movement after turning is complete
-			if (isMoving) {
+			// Since we were supposed to move, we need to resume movement
+			if (targetPosition != Vector2.Zero) {
 				SetupMovement(targetPosition);
 			}
 		} else {
@@ -132,12 +133,23 @@ public partial class Entity : CharacterBody2D {
 
 	private void HandleMovement(double delta) {
 		moveTimer += (float) delta;
-		float progress = moveTimer * (BaseSpeed / TileUtils.TileSize);
 
-		if (progress >= 1.0f) {
-			FinishMovement();
+		// Calculate the distance between start and target
+		Vector2 distanceVector = targetPosition - startingPosition;
+		float distanceToTarget = distanceVector.Length();
+
+		// Avoid division by zero
+		if (distanceToTarget > 0) {
+			// Calculate progress based on actual distance and speed
+			float progress = moveTimer * BaseSpeed / distanceToTarget;
+
+			if (progress >= 1.0f) {
+				FinishMovement();
+			} else {
+				GlobalPosition = startingPosition.Lerp(targetPosition, progress);
+			}
 		} else {
-			GlobalPosition = startingPosition.Lerp(targetPosition, progress);
+			FinishMovement();
 		}
 	}
 
@@ -152,10 +164,10 @@ public partial class Entity : CharacterBody2D {
 			return true;
 
 		Vector2 direction = (targetPixel - GlobalPosition).Normalized();
-		
+
 		// Check if we need to turn
 		bool needsTurn = SlowTurn && direction != facingDirection;
-		
+
 		if (needsTurn) {
 			// Start turning first
 			targetFacingDirection = direction;
@@ -167,7 +179,7 @@ public partial class Entity : CharacterBody2D {
 			return true;
 		} else {
 			FaceDirection(direction);
-			
+
 			if (IsPositionValid(targetPixel)) {
 				SetupMovement(targetPixel);
 				return true;
@@ -282,7 +294,7 @@ public partial class Entity : CharacterBody2D {
 		return health;
 	}
 
-	internal void SetHealth(int v) {
+	public void SetHealth(int v) {
 		health = v;
 	}
 }
