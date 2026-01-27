@@ -14,6 +14,10 @@ config/name="PR_GGJ2026"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="PR_GGJ2026"

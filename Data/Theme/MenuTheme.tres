@@ -1,0 +1,37 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cpcytcm2fbw1a"]
+
+[ext_resource type="StyleBox" uid="uid://q6fj28li6e8g" path="res://Data/Theme/ButtonHover.tres" id="1_5gaam"]
+[ext_resource type="StyleBox" uid="uid://b5p0s4pcc2qph" path="res://Data/Theme/ButtonNormal.tres" id="1_yr4oj"]
+[ext_resource type="FontFile" uid="uid://c36gdfe1nmmac" path="res://Fonts/Silkscreen/slkscreb.ttf" id="2_lnvcy"]
+[ext_resource type="StyleBox" uid="uid://72dxjk54ba56" path="res://Data/Theme/ButtonPressed.tres" id="3_yquco"]
+[ext_resource type="Texture2D" uid="uid://lngx4ylmwmk" path="res://Images/Menu/StoneFrame.png" id="4_hkqrk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hjpiy"]
+color = Color(0.18039216, 0.18039216, 0.18039216, 0.38431373)
+grow_begin = 16.0
+grow_end = 16.0
+thickness = 8
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5gaam"]
+texture = ExtResource("4_hkqrk")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1, 1, 0.77254903, 1)
+
+[resource]
+default_font = ExtResource("2_lnvcy")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 12
+Button/font_sizes/font_size = 40
+Button/styles/hover = ExtResource("1_5gaam")
+Button/styles/normal = ExtResource("1_yr4oj")
+Button/styles/pressed = ExtResource("3_yquco")
+HSeparator/constants/separation = 16
+HSeparator/styles/separator = SubResource("StyleBoxLine_hjpiy")
+Panel/styles/panel = SubResource("StyleBoxTexture_5gaam")
+RichTextLabel/constants/outline_size = 24

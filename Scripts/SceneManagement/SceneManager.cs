@@ -4,7 +4,7 @@ using System;
 [GlobalClass]
 public partial class SceneManager : Node {
 
-	[Export(PropertyHint.File, "*.tscn")] private string transitionPath = "res://Scenes/Transition.tscn";
+	[Export(PropertyHint.File, "*.tscn")] private string transitionPath = "res://Prefabs/Transition.tscn";
 
 	#region Singleton
 	public static SceneManager Instance { get; private set; }

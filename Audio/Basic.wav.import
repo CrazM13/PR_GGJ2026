@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bdjx7reqc7qrs"
-path="res://.godot/imported/Sneak_VClean.wav-58e8dcfd4e7670f4a2a0e99c7726afc3.sample"
+uid="uid://3xwulev52hld"
+path="res://.godot/imported/Basic.wav-860b6fc98a2ac00ea3643644eaa79df2.sample"
 
 [deps]
 
-source_file="res://Audio/Sneak_VClean.wav"
-dest_files=["res://.godot/imported/Sneak_VClean.wav-58e8dcfd4e7670f4a2a0e99c7726afc3.sample"]
+source_file="res://Audio/Basic.wav"
+dest_files=["res://.godot/imported/Basic.wav-860b6fc98a2ac00ea3643644eaa79df2.sample"]
 
 [params]
 
