@@ -14,6 +14,10 @@ config/name="PR_GGJ2026"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cv5323ny1m4kr"
+
 [display]
 
 window/stretch/mode="canvas_items"

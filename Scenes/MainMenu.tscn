@@ -113,6 +113,7 @@ script = ExtResource("2_853f1")
 process_mode = 3
 stream = ExtResource("3_8saeu")
 autoplay = true
+bus = &"Music"
 script = ExtResource("5_df05h")
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button" to="SceneManager" method="LoadScene" binds= ["res://Scenes/SceneContainer.tscn"]]

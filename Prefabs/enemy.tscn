@@ -75,6 +75,8 @@ texture = SubResource("GradientTexture2D_osttl")
 stream = ExtResource("5_n7q57")
 autoplay = true
 max_distance = 1024.0
+bus = &"SFX"
 
 [node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_80imi")
+bus = &"SFX"

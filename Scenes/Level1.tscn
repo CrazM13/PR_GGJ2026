@@ -47,6 +47,7 @@ tile_set = ExtResource("3_2h8qs")
 stream = ExtResource("6_06um6")
 volume_db = -10.0
 autoplay = true
+bus = &"Music"
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("7_ubfni")
@@ -113,6 +114,7 @@ shape = SubResource("RectangleShape2D_kylad")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Area2D"]
 stream = ExtResource("11_2h8qs")
+bus = &"SFX"
 
 [connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
 
