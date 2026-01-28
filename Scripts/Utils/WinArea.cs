@@ -3,6 +3,7 @@ using System;
 
 public partial class WinArea : Area2D {
 
+	[Export] private AudioStreamPlayer winSound;
 
 	public override void _Ready() {
 		base._Ready();
@@ -18,6 +19,8 @@ public partial class WinArea : Area2D {
 			Entity player = PlayerInput.player;
 			player.MoveTo(player.GetTilePosition() + (Vector2.Up * 5));
 			Engine.TimeScale = 0.5f;
+
+			winSound.Play();
 
 			GetTree().CreateTimer(1.5f).Timeout += SceneManager.Instance.ReloadScene;
 		}

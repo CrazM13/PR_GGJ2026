@@ -10,6 +10,7 @@ public partial class PlayerInput : Node {
 
 	[Export] private Entity entity;
 	[Export] private Sprite2D heldSprite;
+	[Export] private AudioStreamPlayer deathSound;
 
 	private bool isAlive = true;
 
@@ -50,6 +51,7 @@ public partial class PlayerInput : Node {
 		if (isAlive && entity.GetHealth() <= 0) {
 			allowInput = false;
 			isAlive = false;
+			deathSound.Play();
 
 			GetTree().CreateTimer(3).Timeout += SceneManager.Instance.ReloadScene;
 		}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cyk3hy3unrxc8"]
+[gd_scene load_steps=13 format=4 uid="uid://cyk3hy3unrxc8"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="1_kylad"]
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="2_bdlbp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://n2ixwur7yvuy" path="res://Prefabs/Mask1Item.tscn" id="8_ug0sv"]
 [ext_resource type="PackedScene" uid="uid://v3us68kawo3u" path="res://Prefabs/Gate.tscn" id="9_0wsr5"]
 [ext_resource type="Script" uid="uid://cay34lyx78iap" path="res://Scripts/Utils/WinArea.cs" id="10_bdlbp"]
+[ext_resource type="AudioStream" uid="uid://ds12xpac3yydb" path="res://Audio/ExitTune.wav" id="11_2h8qs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kylad"]
 size = Vector2(192, 448)
@@ -100,14 +101,18 @@ nextNode = NodePath("../Path")
 [node name="MaskItem" parent="." instance=ExtResource("8_ug0sv")]
 position = Vector2(-323, -1682)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("winSound")]
 position = Vector2(536, -2128)
 collision_mask = 32769
 script = ExtResource("10_bdlbp")
+winSound = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(8, 48)
 shape = SubResource("RectangleShape2D_kylad")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource("11_2h8qs")
 
 [connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
 
