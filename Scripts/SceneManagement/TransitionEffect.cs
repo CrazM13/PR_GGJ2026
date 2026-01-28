@@ -21,12 +21,6 @@ public partial class TransitionEffect : CanvasLayer {
 		GetTree().Paused = true;
 	}
 
-	public void CloseMenu() {
-		GetTree().Paused = false;
-
-		QueueFree();
-	}
-
 	public override void _Process(double delta) {
 		base._Process(delta);
 

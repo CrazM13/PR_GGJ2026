@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3h23qn75o7n0"]
+[gd_scene load_steps=11 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
 [ext_resource type="Texture2D" uid="uid://b0fs8mw3s2y1x" path="res://Images/Characters/Enemies/Enemy_1.png" id="2_80imi"]
 [ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
+[ext_resource type="AudioStream" uid="uid://cbt6eormdlng2" path="res://Audio/SFX/Breathing.wav" id="5_n7q57"]
+[ext_resource type="AudioStream" uid="uid://b5qt8jf6i3mq8" path="res://Audio/SFX/Gun.wav" id="6_80imi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_govpq"]
 size = Vector2(32, 32)
@@ -34,10 +36,11 @@ shape = SubResource("RectangleShape2D_govpq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_80imi")
 
-[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug")]
+[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug", "gunSFX")]
 script = ExtResource("4_kuc4i")
 entity = NodePath("..")
 debug = NodePath("../Label")
+gunSFX = NodePath("../Audio/Gunshot")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
@@ -65,3 +68,13 @@ visibility_layer = 256
 material = SubResource("CanvasItemMaterial_80imi")
 scale = Vector2(16, 16)
 texture = SubResource("GradientTexture2D_osttl")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="IdleBreathing" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("5_n7q57")
+autoplay = true
+max_distance = 1024.0
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("6_80imi")

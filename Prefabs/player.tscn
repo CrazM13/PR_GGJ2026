@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmd8caec5wqpi"]
+[gd_scene load_steps=11 format=3 uid="uid://cmd8caec5wqpi"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_y5hcb"]
 [ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="1_y6xdh"]
 [ext_resource type="Script" uid="uid://ccqpofds2qd8d" path="res://Scripts/Entities/PlayerInput.cs" id="3_2nftw"]
 [ext_resource type="Script" uid="uid://c36dwlj8nvald" path="res://Scripts/Entities/PunchArea.cs" id="4_2nftw"]
 [ext_resource type="Script" uid="uid://blktf53olakut" path="res://Scripts/Utils/SourceCamera.cs" id="4_knrd4"]
+[ext_resource type="PackedScene" uid="uid://dgvryioy6n2pw" path="res://Prefabs/BloodVFX.tscn" id="6_hck1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3icqa"]
 size = Vector2(32, 32)
@@ -29,6 +30,7 @@ visibility_layer = 257
 collision_layer = 32769
 collision_mask = 16385
 script = ExtResource("1_y5hcb")
+bloodParticles = ExtResource("6_hck1p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3icqa")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxxb8646f2irj"]
 
 [ext_resource type="Script" uid="uid://bmtetomt32wcd" path="res://Scripts/Utils/SharedViewport.cs" id="1_sr7tb"]
-[ext_resource type="PackedScene" path="res://Scenes/Level1.tscn" id="2_4l0es"]
+[ext_resource type="PackedScene" uid="uid://cyk3hy3unrxc8" path="res://Scenes/Level1.tscn" id="2_4l0es"]
 [ext_resource type="Script" uid="uid://claul7ae5wkwq" path="res://Scripts/Utils/VirtualCamera.cs" id="3_4l0es"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4l0es"]
@@ -37,6 +37,7 @@ stretch = true
 [node name="SubViewport" type="SubViewport" parent="Main View/SubViewportContainer" node_paths=PackedStringArray("viewport")]
 disable_3d = true
 handle_input_locally = false
+audio_listener_enable_2d = true
 canvas_cull_mask = 4293918975
 size = Vector2i(1152, 648)
 render_target_update_mode = 4

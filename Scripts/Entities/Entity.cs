@@ -8,6 +8,8 @@ public partial class Entity : CharacterBody2D {
 	[Export] private bool SlowTurn { get; set; } = false;
 	[Export] private float TurnSpeed { get; set; } = 5.0f;
 
+	[Export, ExportGroup("Effects")] private PackedScene bloodParticles;
+
 	private Vector2 facingDirection = Vector2.Right;
 	private Vector2 targetPosition;
 	private Vector2 startingPosition;
@@ -28,7 +30,7 @@ public partial class Entity : CharacterBody2D {
 
 	private const float BOUNCE_DURATION = 0.2f;
 	private const float KNOCKBACK_EASE_POWER = 3;
-	private const float MODULATE_FADE_SPEED = 10f;
+	private const float MODULATE_FADE_SPEED = 3f;
 
 	public override void _Ready() {
 		SnapToGrid();
@@ -243,6 +245,21 @@ public partial class Entity : CharacterBody2D {
 		isKnockedBack = true;
 		isMoving = false;
 		shouldBounce = false;
+
+		// Optional Effect
+		if (bloodParticles != null) {
+
+			Node2D effectRoot = bloodParticles.Instantiate<Node2D>();
+
+			AddChild(effectRoot);
+
+			effectRoot.GlobalPosition = this.GlobalPosition;
+			effectRoot.LookAt(effectRoot.GlobalPosition - direction);
+
+			if (effectRoot is GpuParticles2D particles) {
+				particles.Emitting = true;
+			}
+		}
 	}
 
 	private bool IsPositionValid(Vector2 position) {

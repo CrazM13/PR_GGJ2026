@@ -22,7 +22,7 @@ public partial class SceneManager : Node {
 	public void LoadScene(string scenePath) {
 		TransitionEffect transition = ResourceLoader.Load<PackedScene>(transitionPath).Instantiate<TransitionEffect>();
 
-		transition.TransitionInComplete += () => FullLoadScene(scenePath);
+		transition.TransitionInComplete += () => FullLoadScene(scenePath, transition);
 		transition.TransitionInComplete += transition.PlayTransitionOut;
 
 		GetTree().Root.AddChild(transition);
@@ -41,7 +41,7 @@ public partial class SceneManager : Node {
 		transition.PlayTransitionIn();
 	}
 
-	private void FullLoadScene(string scenePath) {
+	private void FullLoadScene(string scenePath, TransitionEffect transition) {
 		GetTree().ChangeSceneToPacked(ResourceLoader.Load<PackedScene>(scenePath));
 	}
 

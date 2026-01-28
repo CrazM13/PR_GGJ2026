@@ -11,11 +11,15 @@ public partial class PlayerInput : Node {
 	[Export] private Entity entity;
 	[Export] private Sprite2D heldSprite;
 
+	private bool isAlive = true;
+
 	public override void _Ready() {
 		base._Ready();
 
 		player = entity;
 		inventory = new Inventory();
+		allowInput = true;
+		isAlive = true;
 	}
 
 	public override void _Process(double delta) {
@@ -43,8 +47,11 @@ public partial class PlayerInput : Node {
 		heldSprite.Texture = held?.carryingSprite;
 		entity.CollisionLayer = (uint) (held?.id == "disguise" ? 0 : 32768);
 
-		if (entity.GetHealth() <= 0) {
-			SceneManager.Instance.ReloadScene();
+		if (isAlive && entity.GetHealth() <= 0) {
+			allowInput = false;
+			isAlive = false;
+
+			GetTree().CreateTimer(3).Timeout += SceneManager.Instance.ReloadScene;
 		}
 	}
 

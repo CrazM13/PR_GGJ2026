@@ -6,6 +6,7 @@ public partial class EnemyController : Node {
 	[Export] private Entity entity;
 	[Export] private TilePathNode pathNode;
 	[Export] private Label debug;
+	[Export, ExportGroup("Audio")] private AudioStreamPlayer2D gunSFX;
 
 	private ViewCone viewCone;
 
@@ -104,6 +105,8 @@ public partial class EnemyController : Node {
 
 		if (viewCone.CanSeePlayer()) {
 			PlayerInput.player.Damage();
+			PlayerInput.player.Knockback(entity.GlobalPosition - alertPoint, 0.01f);
+			gunSFX.Play();
 
 			currentState = EnemyState.TRACK;
 			stateTimeRemaining = 2f;
