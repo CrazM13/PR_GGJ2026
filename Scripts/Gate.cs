@@ -25,6 +25,14 @@ public partial class Gate : Node2D {
 		}
 	}
 
+	public void ChangeState(bool isOpen) {
+		if (isOpen) {
+			Open();
+		} else {
+			if (!perminantUnlock) Close();
+		}
+	}
+
 	public void Open() {
 		sprite.Play("open");
 		collision.CollisionLayer = 0;

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://em0qatfg144"]
+
+[ext_resource type="Script" uid="uid://b832hiq7e1fvv" path="res://Scripts/StepTrigger.cs" id="1_2svem"]
+[ext_resource type="Texture2D" uid="uid://7cwpks5lhix5" path="res://Images/Environment/Button.png" id="1_swgh5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgi2u"]
+size = Vector2(32, 32)
+
+[node name="StepTrigger" type="Area2D" node_paths=PackedStringArray("sprite")]
+collision_mask = 32768
+script = ExtResource("1_2svem")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rgi2u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_swgh5")
+hframes = 2
