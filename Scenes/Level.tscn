@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dqrnhme1jchsl"]
+[gd_scene load_steps=10 format=4 uid="uid://bj8f7p1ee4504"]
 
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="1_0ba56"]
 [ext_resource type="TileSet" uid="uid://qebm80iwtbla" path="res://Data/CollisionTiles.tres" id="2_vsvp5"]

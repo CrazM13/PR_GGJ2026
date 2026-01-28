@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cxxb8646f2irj"]
 
-[ext_resource type="PackedScene" uid="uid://dqrnhme1jchsl" path="res://Scenes/Level.tscn" id="1_idkbg"]
+[ext_resource type="PackedScene" uid="uid://dqrnhme1jchsl" path="res://Scenes/Level1.tscn" id="1_idkbg"]
 [ext_resource type="Script" uid="uid://bmtetomt32wcd" path="res://Scripts/Utils/SharedViewport.cs" id="1_sr7tb"]
 [ext_resource type="Script" uid="uid://claul7ae5wkwq" path="res://Scripts/Utils/VirtualCamera.cs" id="3_4l0es"]
 
