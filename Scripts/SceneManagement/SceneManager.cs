@@ -24,6 +24,7 @@ public partial class SceneManager : Node {
 
 		transition.TransitionInComplete += () => FullLoadScene(scenePath, transition);
 		transition.TransitionInComplete += transition.PlayTransitionOut;
+		transition.TransitionOutComplete += () => { transition.QueueFree(); };
 
 		GetTree().Root.AddChild(transition);
 
@@ -35,6 +36,7 @@ public partial class SceneManager : Node {
 
 		transition.TransitionInComplete += FullReloadScene;
 		transition.TransitionInComplete += transition.PlayTransitionOut;
+		transition.TransitionOutComplete += () => { transition.QueueFree(); };
 
 		GetTree().Root.AddChild(transition);
 
