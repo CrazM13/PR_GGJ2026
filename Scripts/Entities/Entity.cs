@@ -9,6 +9,8 @@ public partial class Entity : CharacterBody2D {
 	[Export] private float TurnSpeed { get; set; } = 5.0f;
 
 	[Export, ExportGroup("Effects")] private PackedScene bloodParticles;
+	[Export] private AnimatedSprite2D sprite;
+	[Export] private Node2D rotator;
 
 	private Vector2 facingDirection = Vector2.Right;
 	private Vector2 targetPosition;
@@ -49,6 +51,9 @@ public partial class Entity : CharacterBody2D {
 		} else if (isMoving) {
 			HandleMovement(delta);
 		}
+
+		// Update animation based on movement state and facing direction
+		UpdateAnimation();
 	}
 
 	private void UpdateVisualEffects(double delta) {
@@ -112,13 +117,14 @@ public partial class Entity : CharacterBody2D {
 		while (angleDiff < -Mathf.Pi) angleDiff += 2 * Mathf.Pi;
 
 		// Calculate turn speed based on TurnSpeed export
-		float turnAmount = angleDiff * (float)delta * TurnSpeed;
+		float turnAmount = angleDiff * (float) delta * TurnSpeed;
 
 		// Check if we've completed the turn
 		if (Mathf.Abs(angleDiff) < 0.01f || Mathf.Abs(turnAmount) >= Mathf.Abs(angleDiff)) {
 			// Complete the turn
 			facingDirection = targetFacingDirection;
-			Rotation = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
+			// Only rotate the rotator node, not the entity itself
+			rotator.Rotation = Mathf.Atan2(targetFacingDirection.Y, targetFacingDirection.X);
 			isTurning = false;
 
 			// Start movement after turning is complete
@@ -128,8 +134,8 @@ public partial class Entity : CharacterBody2D {
 			}
 		} else {
 			// Continue turning
-			Rotation += turnAmount;
-			facingDirection = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation));
+			rotator.Rotation += turnAmount;
+			facingDirection = new Vector2(Mathf.Cos(rotator.Rotation), Mathf.Sin(rotator.Rotation));
 		}
 	}
 
@@ -229,7 +235,8 @@ public partial class Entity : CharacterBody2D {
 		facingDirection = direction;
 
 		if (direction != Vector2.Zero) {
-			Rotation = Mathf.Atan2(direction.Y, direction.X);
+			// Only rotate the rotator node, not the entity itself
+			rotator.Rotation = Mathf.Atan2(direction.Y, direction.X);
 		}
 	}
 
@@ -313,5 +320,35 @@ public partial class Entity : CharacterBody2D {
 
 	public void SetHealth(int v) {
 		health = v;
+	}
+
+	private void UpdateAnimation() {
+		// Determine if we're moving or idle
+		bool isWalking = isMoving || shouldBounce || isTurning;
+
+		// Get the current facing direction and determine animation
+		string animationName = "";
+
+		if (isWalking) {
+			// Walking animation
+			animationName = "walk";
+		} else {
+			animationName = "idle";
+		}
+
+		if (facingDirection.X > 0) {
+			animationName += "_right";
+		} else if (facingDirection.X < 0) {
+			animationName += "_left";
+		} else if (facingDirection.Y < 0) {
+			animationName += "_up";
+		} else if (facingDirection.Y > 0) {
+			animationName += "_down";
+		}
+
+		// Update the sprite animation
+		if (sprite != null && sprite.Animation != animationName && !string.IsNullOrEmpty(animationName)) {
+			sprite.Play(animationName);
+		}
 	}
 }
