@@ -5,7 +5,7 @@ public partial class EnemyController : Node {
 
 	[Export] private Entity entity;
 	[Export] private TilePathNode pathNode;
-	[Export] private Label debug;
+	[Export] private StateIndicator stateIndicator;
 	[Export, ExportGroup("Audio")] private AudioStreamPlayer2D gunSFX;
 
 	private ViewCone viewCone;
@@ -58,13 +58,13 @@ public partial class EnemyController : Node {
 
 		float newLOD = 1 - Mathf.Clamp(entity.GlobalPosition.DistanceSquaredTo(PlayerInput.playerPosition) / 3_686_400f, 0, 1);
 		viewCone.SetLOD(newLOD);
-		debug.Text = $"STATE: {currentState}\nSTATE_TIME: {stateTimeRemaining}\nLOD: {Mathf.FloorToInt(newLOD * 100f)}";
 	}
 
 	public void AlertOfPlayer(Vector2 alertPoint) {
 		if (currentState != EnemyState.TRACK && currentState != EnemyState.ATTACK && currentState != EnemyState.DISABLED) {
 			currentState = EnemyState.TRACK;
 			stateTimeRemaining = 4f;
+			stateIndicator.PlayAlert();
 		}
 		this.alertPoint = alertPoint;
 	}
@@ -94,6 +94,7 @@ public partial class EnemyController : Node {
 			} else {
 				currentState = EnemyState.IDLE;
 				stateTimeRemaining = 4f;
+				stateIndicator.PlayLost();
 			}
 		}
 	}
@@ -107,6 +108,7 @@ public partial class EnemyController : Node {
 			PlayerInput.player.Damage();
 			PlayerInput.player.Knockback(entity.GlobalPosition - alertPoint, 0.01f);
 			gunSFX.Play();
+			stateIndicator.PlayAlert();
 
 			currentState = EnemyState.TRACK;
 			stateTimeRemaining = 2f;

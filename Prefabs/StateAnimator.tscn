@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://7ggdkh7s1b6w"]
+
+[ext_resource type="SpriteFrames" uid="uid://bal2vqksvw340" path="res://Data/StateAnim.tres" id="1_b0fxl"]
+[ext_resource type="Script" uid="uid://btmw52fyjvxrv" path="res://Scripts/Entities/StateIndicator.cs" id="1_n5drb"]
+[ext_resource type="AudioStream" uid="uid://cnulk0325ya8b" path="res://Audio/SFX/Alert 1.wav" id="2_43g5g"]
+[ext_resource type="AudioStream" uid="uid://bxxfty72y1hxo" path="res://Audio/SFX/Alert 2.wav" id="3_6q0o3"]
+[ext_resource type="AudioStream" uid="uid://dhod4ja5e2ffu" path="res://Audio/SFX/Alert 3.wav" id="4_txq3t"]
+[ext_resource type="AudioStream" uid="uid://5i20xhqk6vqh" path="res://Audio/SFX/Lost 1.wav" id="5_0yyv8"]
+[ext_resource type="AudioStream" uid="uid://dhjbnsom72tua" path="res://Audio/SFX/Lost 2.wav" id="6_dmg1n"]
+[ext_resource type="AudioStream" uid="uid://ohgci5awwwdg" path="res://Audio/SFX/Lost 3.wav" id="7_a7dl2"]
+
+[node name="StateAnimator" type="Node2D" node_paths=PackedStringArray("displays", "audioSource")]
+script = ExtResource("1_n5drb")
+displays = [NodePath("Anim1"), NodePath("Anim2"), NodePath("Anim3")]
+audioSource = NodePath("Audio")
+alertSFX = Array[AudioStream]([ExtResource("2_43g5g"), ExtResource("3_6q0o3"), ExtResource("4_txq3t")])
+lostSFX = Array[AudioStream]([ExtResource("5_0yyv8"), ExtResource("6_dmg1n"), ExtResource("7_a7dl2")])
+
+[node name="Anim1" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = ExtResource("1_b0fxl")
+animation = &"reset"
+autoplay = "reset"
+
+[node name="Anim2" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, -16)
+sprite_frames = ExtResource("1_b0fxl")
+animation = &"reset"
+autoplay = "reset"
+
+[node name="Anim3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-32, -16)
+sprite_frames = ExtResource("1_b0fxl")
+animation = &"reset"
+autoplay = "reset"
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

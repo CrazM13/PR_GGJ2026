@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3h23qn75o7n0"]
+[gd_scene load_steps=12 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
 [ext_resource type="Texture2D" uid="uid://b0fs8mw3s2y1x" path="res://Images/Characters/Enemies/Enemy_1.png" id="2_80imi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
 [ext_resource type="AudioStream" uid="uid://cbt6eormdlng2" path="res://Audio/SFX/Breathing.wav" id="5_n7q57"]
 [ext_resource type="AudioStream" uid="uid://b5qt8jf6i3mq8" path="res://Audio/SFX/Gun.wav" id="6_80imi"]
+[ext_resource type="PackedScene" uid="uid://7ggdkh7s1b6w" path="res://Prefabs/StateAnimator.tscn" id="7_osttl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_govpq"]
 size = Vector2(32, 32)
@@ -36,15 +37,12 @@ shape = SubResource("RectangleShape2D_govpq")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_80imi")
 
-[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug", "gunSFX")]
+[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "debug", "stateIndicator", "gunSFX")]
 script = ExtResource("4_kuc4i")
 entity = NodePath("..")
-debug = NodePath("../Label")
+debug = NodePath("")
+stateIndicator = NodePath("../StateAnimator")
 gunSFX = NodePath("../Audio/Gunshot")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "display", "collisionPolygon")]
 visibility_layer = 256
@@ -80,3 +78,5 @@ bus = &"SFX"
 [node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_80imi")
 bus = &"SFX"
+
+[node name="StateAnimator" parent="." instance=ExtResource("7_osttl")]
