@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://bal2vqksvw340"]
+[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://ba4w0ouc7h1w5"]
 
 [ext_resource type="Texture2D" uid="uid://c1k3nnwrr1etk" path="res://Images/Environment/AlertAnim.png" id="1_uugb1"]
 [ext_resource type="Texture2D" uid="uid://dr4iv3jxpfe2e" path="res://Images/Environment/LostAnim.png" id="2_gob60"]
