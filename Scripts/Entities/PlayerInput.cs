@@ -46,7 +46,7 @@ public partial class PlayerInput : Node {
 
 		ItemData held = inventory.GetStoredItem();
 		heldSprite.Texture = held?.carryingSprite;
-		entity.CollisionLayer = (uint) (held?.id == "disguise" ? 0 : 32768);
+		entity.CollisionLayer = (uint) (held?.id == "disguise" ? 4097 : 32769);
 
 		if (isAlive && entity.GetHealth() <= 0) {
 			allowInput = false;

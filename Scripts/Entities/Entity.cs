@@ -38,6 +38,7 @@ public partial class Entity : CharacterBody2D {
 	public override void _Ready() {
 		SnapToGrid();
 		health = MaxHealth;
+		facingDirection = Vector2.Down;
 	}
 
 	public override void _Process(double delta) {
@@ -270,7 +271,7 @@ public partial class Entity : CharacterBody2D {
 		}
 	}
 
-	private bool IsPositionValid(Vector2 position) {
+	public bool IsPositionValid(Vector2 position) {
 		Vector2 originalPosition = GlobalPosition;
 		GlobalPosition = position;
 		bool hasCollision = MoveAndCollide(Vector2.Zero, true) != null;
@@ -345,6 +346,8 @@ public partial class Entity : CharacterBody2D {
 			animationName += "_up";
 		} else if (facingDirection.Y > 0) {
 			animationName += "_down";
+		} else {
+			return; // FAILED
 		}
 
 		// Update the sprite animation

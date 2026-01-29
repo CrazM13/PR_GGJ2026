@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bj8f7p1ee4504"]
+[gd_scene load_steps=12 format=4 uid="uid://bj8f7p1ee4504"]
 
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="1_0ba56"]
 [ext_resource type="TileSet" uid="uid://qebm80iwtbla" path="res://Data/CollisionTiles.tres" id="2_vsvp5"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_ienac"]
 [ext_resource type="PackedScene" uid="uid://n2ixwur7yvuy" path="res://Prefabs/Mask1Item.tscn" id="8_5rrr5"]
 [ext_resource type="PackedScene" uid="uid://v3us68kawo3u" path="res://Prefabs/Gate.tscn" id="9_or7tv"]
+[ext_resource type="PackedScene" uid="uid://ca7m7pypervj7" path="res://Prefabs/StatueEnemy.tscn" id="10_133si"]
+[ext_resource type="PackedScene" uid="uid://6adeatgr3ned" path="res://Prefabs/DisguiseItem.tscn" id="11_esopp"]
 
 [node name="Level" type="Node2D"]
 visibility_layer = 257
@@ -110,6 +112,12 @@ position = Vector2(1568, -96)
 [node name="Gate" parent="." instance=ExtResource("9_or7tv")]
 position = Vector2(544, 288)
 keyID = "disguise"
+
+[node name="StatueEnemy" parent="." instance=ExtResource("10_133si")]
+position = Vector2(224, 40)
+
+[node name="DisguiseItem" parent="." instance=ExtResource("11_esopp")]
+position = Vector2(32, 24)
 
 [connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
 
