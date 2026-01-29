@@ -211,6 +211,7 @@ fill_from = Vector2(0.5, 0.5)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "rotator")]
 light_mask = 257
 visibility_layer = 257
+y_sort_enabled = true
 collision_layer = 32769
 collision_mask = 16385
 script = ExtResource("1_y5hcb")
@@ -222,6 +223,7 @@ rotator = NodePath("Area2D")
 shape = SubResource("RectangleShape2D_3icqa")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_7c0pg")
 animation = &"idle_up"
 autoplay = "idle_down"
@@ -256,6 +258,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 visibility_layer = 256
+z_index = -5
 collision_layer = 32768
 collision_mask = 16384
 script = ExtResource("4_2nftw")
@@ -269,8 +272,8 @@ color = Color(1, 1, 1, 0.5019608)
 polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)
 
 [node name="Lighting" type="Sprite2D" parent="."]
-show_behind_parent = true
 visibility_layer = 256
+z_index = -5
 material = SubResource("CanvasItemMaterial_knrd4")
 scale = Vector2(16, 16)
 texture = SubResource("GradientTexture2D_hck1p")
