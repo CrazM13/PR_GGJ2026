@@ -40,6 +40,18 @@ public partial class PlayerInput : Node {
 				}
 			}
 
+			if (Input.IsActionJustPressed("drop_item")) {
+				ItemData item = inventory.GetStoredItem();
+
+				if (item != null) {
+					Node2D newNode = GD.Load<PackedScene>(item.prefabPath).Instantiate<Node2D>();
+					newNode.GlobalPosition = entity.GlobalPosition + (entity.GetFacingDirection() * TileUtils.TileSize);
+					entity.GetParent().AddChild(newNode);
+
+					inventory.ClearInventory();
+				}
+			}
+
 		}
 
 		playerPosition = entity.GlobalPosition;
