@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cmd8caec5wqpi"]
+[gd_scene load_steps=35 format=3 uid="uid://cmd8caec5wqpi"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_y5hcb"]
 [ext_resource type="Texture2D" uid="uid://dcfr6wvcv78yk" path="res://Images/Characters/Player.png" id="1_y6xdh"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://blktf53olakut" path="res://Scripts/Utils/SourceCamera.cs" id="4_knrd4"]
 [ext_resource type="PackedScene" uid="uid://dgvryioy6n2pw" path="res://Prefabs/BloodVFX.tscn" id="6_hck1p"]
 [ext_resource type="AudioStream" uid="uid://7t7mlhxrg64n" path="res://Audio/DeathTune.wav" id="7_juxdh"]
+[ext_resource type="AudioStream" uid="uid://bootlvbldsseo" path="res://Audio/SFX/Skitter.wav" id="8_4qbli"]
+[ext_resource type="Script" uid="uid://cola160fl4rer" path="res://Scripts/Utils/RandomizeNoise.cs" id="9_08u7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3icqa"]
 size = Vector2(32, 32)
@@ -282,3 +284,8 @@ texture = SubResource("GradientTexture2D_hck1p")
 stream = ExtResource("7_juxdh")
 volume_db = -8.0
 bus = &"SFX"
+
+[node name="Skitter" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4qbli")
+max_distance = 512.0
+script = ExtResource("9_08u7w")
