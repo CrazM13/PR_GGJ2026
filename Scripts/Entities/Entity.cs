@@ -7,6 +7,7 @@ public partial class Entity : CharacterBody2D {
 	[Export] private int MaxHealth { get; set; } = 1;
 	[Export] private bool SlowTurn { get; set; } = false;
 	[Export] private float TurnSpeed { get; set; } = 5.0f;
+	[Export] private bool WalkThruWalls { get; set; } = false;
 
 	[Export, ExportGroup("Effects")] private PackedScene bloodParticles;
 	[Export] private AnimatedSprite2D sprite;
@@ -188,7 +189,7 @@ public partial class Entity : CharacterBody2D {
 		} else {
 			FaceDirection(direction);
 
-			if (IsPositionValid(targetPixel)) {
+			if (WalkThruWalls || IsPositionValid(targetPixel)) {
 				SetupMovement(targetPixel);
 				return true;
 			} else {

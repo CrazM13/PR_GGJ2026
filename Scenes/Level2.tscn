@@ -21,6 +21,7 @@ visibility_layer = 257
 
 [node name="Player" parent="." instance=ExtResource("1_70df5")]
 position = Vector2(347, 350)
+WalkThruWalls = true
 bloodParticles = null
 
 [node name="Map" type="Node2D" parent="."]

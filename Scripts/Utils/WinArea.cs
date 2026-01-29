@@ -3,6 +3,7 @@ using System;
 
 public partial class WinArea : Area2D {
 
+	[Export] private string nextLevel;
 	[Export] private AudioStreamPlayer winSound;
 
 	public override void _Ready() {
@@ -22,7 +23,19 @@ public partial class WinArea : Area2D {
 
 			winSound.Play();
 
-			GetTree().CreateTimer(1.5f).Timeout += SceneManager.Instance.ReloadScene;
+			GetTree().CreateTimer(1.5f).Timeout += () => {
+
+				if (string.IsNullOrEmpty(nextLevel)) {
+					LoadLevel.levelToLoad = "res://Scenes/Level1.tscn";
+					SceneManager.Instance.LoadScene("res://Scenes/MainMenu.tscn");
+				} else {
+					LoadLevel.levelToLoad = nextLevel;
+					SceneManager.Instance.ReloadScene();
+				}
+
+				Engine.TimeScale = 1f;
+				
+			};
 		}
 	}
 }
