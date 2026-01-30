@@ -286,7 +286,12 @@ nextNode = NodePath("../Path1")
 [node name="MaskItem" parent="." instance=ExtResource("11_1je60")]
 position = Vector2(-2273, -134)
 
+[connection signal="OnItemChange" from="Map/MaskItem/Node" to="Gate2" method="AttemptUnlock"]
+[connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
+
+[editable path="Map/MaskItem"]
 [editable path="Enemies/Enemy"]
 [editable path="Enemies/Enemy2"]
 [editable path="Enemies/Enemy3"]
 [editable path="Enemies/Enemy4"]
+[editable path="MaskItem"]
