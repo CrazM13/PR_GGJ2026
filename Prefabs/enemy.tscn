@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://d3h23qn75o7n0"]
+[gd_scene load_steps=32 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
 [ext_resource type="Texture2D" uid="uid://b0fs8mw3s2y1x" path="res://Images/Characters/Enemies/Enemy_1.png" id="2_osttl"]
 [ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
+[ext_resource type="Texture2D" uid="uid://dc63hvy4soxan" path="res://Images/Environment/light.tres" id="5_g7nnu"]
 [ext_resource type="AudioStream" uid="uid://cbt6eormdlng2" path="res://Audio/SFX/Breathing.wav" id="5_n7q57"]
 [ext_resource type="AudioStream" uid="uid://b5qt8jf6i3mq8" path="res://Audio/SFX/Gun.wav" id="6_80imi"]
 [ext_resource type="PackedScene" uid="uid://7ggdkh7s1b6w" path="res://Prefabs/StateAnimator.tscn" id="7_osttl"]
@@ -197,17 +198,6 @@ animations = [{
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_80imi"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_knrd4"]
-offsets = PackedFloat32Array(0, 0.684466)
-colors = PackedColorArray(1, 1, 1, 0.5019608, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_osttl"]
-gradient = SubResource("Gradient_knrd4")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "rotator")]
 visibility_layer = 257
 collision_layer = 16385
@@ -246,13 +236,17 @@ polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 visibility_layer = 256
+z_index = 70
+z_as_relative = false
 
 [node name="Lighting" type="Sprite2D" parent="."]
 show_behind_parent = true
 visibility_layer = 256
+z_index = 70
+z_as_relative = false
 material = SubResource("CanvasItemMaterial_80imi")
 scale = Vector2(16, 16)
-texture = SubResource("GradientTexture2D_osttl")
+texture = ExtResource("5_g7nnu")
 
 [node name="Audio" type="Node2D" parent="."]
 

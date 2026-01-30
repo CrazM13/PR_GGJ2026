@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="PR_GGJ2026"
+run/main_scene="uid://cop8ip1e1fgvo"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
