@@ -109,8 +109,11 @@ collision = NodePath("StaticBody2D")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.12941177, 0.7058824, 0.25490198, 1)
 sprite_frames = SubResource("SpriteFrames_2qe3x")
 animation = &"close"
+frame = 5
+frame_progress = 0.22219998
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 513

@@ -17,7 +17,6 @@ visibility_layer = 257
 
 [node name="Player" parent="." instance=ExtResource("3_8rbpu")]
 position = Vector2(32, 96)
-WalkThruWalls = true
 
 [node name="Map" type="Node2D" parent="."]
 
