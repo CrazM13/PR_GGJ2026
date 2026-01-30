@@ -236,7 +236,7 @@ polygon = PackedVector2Array(0, 0, 0, 0, 0, 0)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 visibility_layer = 256
-z_index = 70
+z_index = 75
 z_as_relative = false
 
 [node name="Lighting" type="Sprite2D" parent="."]

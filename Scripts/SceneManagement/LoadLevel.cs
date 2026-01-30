@@ -3,7 +3,7 @@ using System;
 
 public partial class LoadLevel : Node {
 
-	public static string levelToLoad = "res://Scenes/Level1.tscn";
+	public static string levelToLoad = "res://Scenes/Level2.tscn";
 
 	public override void _Ready() {
 		base._Ready();

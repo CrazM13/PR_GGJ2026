@@ -22,14 +22,11 @@ size = Vector2(192, 448)
 
 [node name="Level" type="Node2D"]
 visibility_layer = 257
-y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_70df5")]
 position = Vector2(347, 350)
-bloodParticles = null
 
 [node name="Map" type="Node2D" parent="."]
-y_sort_enabled = true
 
 [node name="LowerLayer" type="TileMapLayer" parent="Map"]
 z_index = -5
@@ -88,6 +85,7 @@ stream = ExtResource("8_62f1r")
 bus = &"SFX"
 
 [node name="Enemies" type="Node2D" parent="."]
+visibility_layer = 257
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("4_62f1r")]
 position = Vector2(664, -1239)
