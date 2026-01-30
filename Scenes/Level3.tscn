@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bscs61uv76ewy"]
+[gd_scene load_steps=14 format=4 uid="uid://bscs61uv76ewy"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="1_kg31f"]
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="2_ncjpd"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://ds12xpac3yydb" path="res://Audio/ExitTune.wav" id="9_kg31f"]
 [ext_resource type="PackedScene" uid="uid://v3us68kawo3u" path="res://Prefabs/Gate.tscn" id="9_xxw0v"]
 [ext_resource type="PackedScene" uid="uid://44d06uh6lrir" path="res://Prefabs/Mask5Item.tscn" id="10_ncjpd"]
+[ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="11_ncjpd"]
+[ext_resource type="PackedScene" uid="uid://d3h23qn75o7n0" path="res://Prefabs/enemy.tscn" id="12_ffsx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffsx8"]
 size = Vector2(192, 448)
@@ -83,9 +85,226 @@ bus = &"SFX"
 [node name="MaskItem2" parent="." instance=ExtResource("10_ncjpd")]
 position = Vector2(948, -916)
 
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="PathA" type="Node2D" parent="Paths"]
+
+[node name="Path1" type="Node2D" parent="Paths/PathA" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1738, 796)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path2")
+
+[node name="Path2" type="Node2D" parent="Paths/PathA" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1752, -200)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path1")
+
+[node name="PathB" type="Node2D" parent="Paths"]
+
+[node name="Path1" type="Node2D" parent="Paths/PathB" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3199, 571)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path2")
+
+[node name="Path2" type="Node2D" parent="Paths/PathB" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2888, 571)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path3")
+
+[node name="Path3" type="Node2D" parent="Paths/PathB" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2888, 768)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path4")
+
+[node name="Path4" type="Node2D" parent="Paths/PathB" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2891, 571)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path5")
+
+[node name="Path5" type="Node2D" parent="Paths/PathB" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2509, 565)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path1")
+
+[node name="PathC" type="Node2D" parent="Paths"]
+
+[node name="Path1" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3781, 310)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../../PathA/Path2")
+
+[node name="Path2" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3784, 611)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path3")
+
+[node name="Path3" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3913, 608)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path4")
+
+[node name="Path4" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3907, 1204)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path5")
+
+[node name="Path5" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3549, 1204)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path6")
+
+[node name="Path6" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3904, 1201)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path7")
+
+[node name="Path7" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3917, 595)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path8")
+
+[node name="Path8" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3791, 595)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path1")
+
+[node name="PathD" type="Node2D" parent="Paths"]
+
+[node name="Path1" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1592, -1763)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path2")
+
+[node name="Path2" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2327, -1758)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path3")
+
+[node name="Path3" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2336, -1363)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path4")
+
+[node name="Path4" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1991, -1381)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path5")
+
+[node name="Path5" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2000, -944)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path6")
+
+[node name="Path6" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1747, -958)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path7")
+
+[node name="Path7" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(1733, -1491)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path8")
+
+[node name="Path8" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2147, -1514)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path9")
+
+[node name="Path9" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2161, -1362)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path10")
+
+[node name="Path10" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2331, -1362)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path11")
+
+[node name="Path11" type="Node2D" parent="Paths/PathD" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2322, -1753)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path1")
+
+[node name="PathE" type="Node2D" parent="Paths"]
+
+[node name="Path1" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3582, -1772)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path2")
+
+[node name="Path2" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3596, -687)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path3")
+
+[node name="Path3" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2865, -696)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path4")
+
+[node name="Path4" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2856, -1257)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path5")
+
+[node name="Path5" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2865, -710)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path6")
+
+[node name="Path6" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(2235, -710)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path7")
+
+[node name="Path7" type="Node2D" parent="Paths/PathE" node_paths=PackedStringArray("nextNode")]
+position = Vector2(3595, -692)
+script = ExtResource("11_ncjpd")
+nextNode = NodePath("../Path1")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("12_ffsx8")]
+position = Vector2(1746, 804)
+
+[node name="AI" parent="Enemies/Enemy" index="2" node_paths=PackedStringArray("pathNode")]
+pathNode = NodePath("../../../Paths/PathA/Path1")
+
+[node name="Lighting" parent="Enemies/Enemy" index="4"]
+position = Vector2(0, -3)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("12_ffsx8")]
+position = Vector2(3201, 570)
+
+[node name="AI" parent="Enemies/Enemy2" index="2" node_paths=PackedStringArray("pathNode")]
+pathNode = NodePath("../../../Paths/PathB/Path1")
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("12_ffsx8")]
+position = Vector2(3780, 317)
+
+[node name="AI" parent="Enemies/Enemy3" index="2" node_paths=PackedStringArray("pathNode")]
+pathNode = NodePath("../../../Paths/PathC/Path1")
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("12_ffsx8")]
+position = Vector2(1589, -1771)
+
+[node name="AI" parent="Enemies/Enemy4" index="2" node_paths=PackedStringArray("pathNode")]
+pathNode = NodePath("../../../Paths/PathD/Path1")
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("12_ffsx8")]
+position = Vector2(3578, -1766)
+
+[node name="AI" parent="Enemies/Enemy5" index="2" node_paths=PackedStringArray("pathNode")]
+pathNode = NodePath("../../../Paths/PathE/Path1")
+
 [connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
 [connection signal="OnItemChange" from="MaskItem2/Node" to="Gate2" method="AttemptUnlock"]
 [connection signal="OnItemChange" from="MaskItem2/Node" to="Gate3" method="AttemptUnlock"]
 
 [editable path="MaskItem"]
 [editable path="MaskItem2"]
+[editable path="Enemies/Enemy"]
+[editable path="Enemies/Enemy2"]
+[editable path="Enemies/Enemy3"]
+[editable path="Enemies/Enemy4"]
+[editable path="Enemies/Enemy5"]
