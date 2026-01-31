@@ -340,6 +340,7 @@ nextNode = NodePath("../Path1")
 position = Vector2(-161, -1437)
 
 [node name="Sprite2D" parent="Switches/Item" index="1"]
+self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("17_fi0mo")
 
 [node name="Node" parent="Switches/Item" index="2"]
@@ -349,6 +350,7 @@ persistant = true
 position = Vector2(-88, -1439)
 
 [node name="Sprite2D" parent="Switches/Item2" index="1"]
+self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("18_gb1h0")
 
 [node name="Node" parent="Switches/Item2" index="2"]
@@ -358,6 +360,7 @@ persistant = true
 position = Vector2(147, -1442)
 
 [node name="Sprite2D" parent="Switches/Item3" index="1"]
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(12, 0)
 texture = ExtResource("19_5em11")
 
@@ -368,6 +371,7 @@ persistant = true
 position = Vector2(224, -1441)
 
 [node name="Sprite2D" parent="Switches/Item4" index="1"]
+self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("20_x7gh6")
 
 [node name="Node" parent="Switches/Item4" index="2"]
