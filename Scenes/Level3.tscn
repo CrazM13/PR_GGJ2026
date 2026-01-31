@@ -60,15 +60,12 @@ transitionPath = "uid://trmcmbumx5wm"
 
 [node name="Gate" parent="." instance=ExtResource("9_xxw0v")]
 position = Vector2(673, -670)
-keyID = "mask4"
 
 [node name="Gate2" parent="." instance=ExtResource("9_xxw0v")]
 position = Vector2(293, -672)
-keyID = "mask5"
 
 [node name="Gate3" parent="." instance=ExtResource("9_xxw0v")]
 position = Vector2(4450, 1123)
-keyID = "mask5"
 
 [node name="MaskItem" parent="." instance=ExtResource("7_43mlh")]
 position = Vector2(3869, 1686)
