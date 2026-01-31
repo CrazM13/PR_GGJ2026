@@ -245,14 +245,14 @@ collision_mask = 16384
 script = ExtResource("4_2nftw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 56, 96, 104, 32, 104, -32, 56, -96)
+polygon = PackedVector2Array(0, -48, 16, -32, 16, 32, 0, 48, 96, 64, 160, 32, 160, -32, 96, -80)
 
 [node name="Polygon2D" type="Polygon2D" parent="Area2D"]
 visibility_layer = 256
 z_index = 70
 z_as_relative = false
 color = Color(1, 1, 1, 0.5019608)
-polygon = PackedVector2Array(0, -72, 16, -32, 16, 32, 0, 64, 96, 120, 160, 32, 160, -32, 96, -112)
+polygon = PackedVector2Array(0, -48, 16, -32, 16, 32, 0, 48, 96, 64, 160, 32, 160, -32, 96, -80)
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_juxdh")
