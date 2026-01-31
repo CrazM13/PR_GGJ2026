@@ -12,6 +12,7 @@ public partial class Entity : CharacterBody2D {
 	[Export, ExportGroup("Effects")] private PackedScene bloodParticles;
 	[Export] private AnimatedSprite2D sprite;
 	[Export] private Node2D rotator;
+	[Export] private AudioStreamPlayer bumpSound;
 
 	private Vector2 facingDirection = Vector2.Right;
 	private Vector2 targetPosition;
@@ -221,6 +222,7 @@ public partial class Entity : CharacterBody2D {
 		shouldBounce = true;
 		moveTimer = 0.0f;
 		isMoving = false;
+		bumpSound?.Play();
 	}
 
 	/// <summary>

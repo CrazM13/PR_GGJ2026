@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0otknrsn06co"]
+[gd_scene load_steps=12 format=3 uid="uid://b0otknrsn06co"]
 
 [ext_resource type="Texture2D" uid="uid://bhd8rrfuvwijt" path="res://Images/Menu/TempleMenuBG.png" id="1_5hy3q"]
 [ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="1_cbhj7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cphg1v2vye2ud" path="res://Scripts/Utils/VolumeSlider.cs" id="3_6f4k2"]
 [ext_resource type="AudioStream" uid="uid://bdgsunnxw2ww8" path="res://Audio/Sneak_VHorror.wav" id="3_q4at1"]
 [ext_resource type="Script" uid="uid://wxthtb4aadgj" path="res://Scripts/Menu/BetterButton.cs" id="4_cja8r"]
+[ext_resource type="Script" uid="uid://1nuvnhopmek" path="res://Scripts/Menu/PlayerSprintButton.cs" id="4_kfnrp"]
 [ext_resource type="Resource" uid="uid://d3kaci14kq7jq" path="res://Data/Menu/SFX/HoverSFX.tres" id="5_pke3u"]
 [ext_resource type="Script" uid="uid://dsk7wuro2rrko" path="res://Scripts/Utils/SyncedAudio.cs" id="5_q4at1"]
 [ext_resource type="Script" uid="uid://dg1k7jm1w656q" path="res://Scripts/Menu/ButtonEffects.cs" id="6_pke3u"]
@@ -91,6 +92,9 @@ theme_override_constants/margin_bottom = 96
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
 [node name="Master" type="HBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 
@@ -143,6 +147,24 @@ max_value = 1.0
 step = 0.01
 script = ExtResource("3_6f4k2")
 busName = "SFX"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Toggle" type="HBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Toggle"]
+custom_minimum_size = Vector2(148, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Toggle Sprint"
+label_settings = SubResource("LabelSettings_q4at1")
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Toggle"]
+layout_mode = 2
+flat = true
+script = ExtResource("4_kfnrp")
 
 [node name="Button" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -7,6 +7,7 @@ public partial class PlayerInput : Node {
 	public static Entity player;
 	public static Inventory inventory;
 	public static bool allowInput = true;
+	public static bool sprintToggle = false;
 
 	[Export] private Entity entity;
 	[Export] private Sprite2D heldSprite;
@@ -30,7 +31,14 @@ public partial class PlayerInput : Node {
 
 		if (allowInput) {
 
-			entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
+			if (sprintToggle) {
+				if (Input.IsActionJustPressed("move_sprint")) {
+					entity.SetSpeedModifier(entity.IsSpeedModified() ? 1 : SPRINT_MOD);
+				}
+			} else {
+				entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
+			}
+				
 			if (!entity.IsMoving()) {
 				if (Input.IsActionPressed("move_right")) {
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Right);

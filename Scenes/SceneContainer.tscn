@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cxxb8646f2irj"]
+[gd_scene load_steps=15 format=3 uid="uid://cxxb8646f2irj"]
 
 [ext_resource type="Script" uid="uid://cjqj66cummmna" path="res://Scripts/SceneManagement/LoadLevel.cs" id="1_2j4cw"]
 [ext_resource type="Script" uid="uid://bmtetomt32wcd" path="res://Scripts/Utils/SharedViewport.cs" id="1_sr7tb"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://dljq1aauupfmb" path="res://Scripts/LightingSetting.cs" id="3_prfbf"]
 [ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="4_2j4cw"]
 [ext_resource type="Script" uid="uid://vycdl1mf3abn" path="res://Scripts/Utils/PauseMenu.cs" id="4_8jk6i"]
+[ext_resource type="Script" uid="uid://b72g7w6bhyjfj" path="res://Scripts/Menu/HUD.cs" id="7_6qjc8"]
+[ext_resource type="Texture2D" uid="uid://cg0ejtin2csrw" path="res://Images/Menu/detection_hidden.tres" id="7_m3hrk"]
+[ext_resource type="Script" uid="uid://cq1n6ldwhu6ld" path="res://Scripts/Menu/HiddenDisplay.cs" id="9_jhljd"]
+[ext_resource type="Texture2D" uid="uid://cvg3ujnf5om1a" path="res://Images/Menu/detection_visible.tres" id="10_r8r1n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4l0es"]
 blend_mode = 3
@@ -194,6 +198,26 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Quit"
+
+[node name="HUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("hiddenDisplay")]
+layer = 1000
+script = ExtResource("7_6qjc8")
+hiddenDisplay = NodePath("TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+visibility_layer = 128
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_bottom = 28.0
+grow_horizontal = 0
+texture = ExtResource("7_m3hrk")
+stretch_mode = 3
+script = ExtResource("9_jhljd")
+showTexture = ExtResource("10_r8r1n")
+hiddenTexture = ExtResource("7_m3hrk")
 
 [connection signal="pressed" from="Pause menu/Control/Panel/MarginContainer/HBoxContainer/Button" to="Pause menu" method="UnpauseGame"]
 [connection signal="pressed" from="Pause menu/Control/Panel/MarginContainer/HBoxContainer/Button2" to="Pause menu" method="Quit"]

@@ -85,10 +85,12 @@ public partial class ViewCone : Area2D {
 
 	private void OnBodyExited(Node2D body) {
 		playerInSight = false;
+		HUD.HiddenLevel--;
 	}
 
 	private void OnBodyEntered(Node2D body) {
 		playerInSight = true;
+		HUD.HiddenLevel++;
 	}
 
 	private void UpdateViewConeDisplay() {
