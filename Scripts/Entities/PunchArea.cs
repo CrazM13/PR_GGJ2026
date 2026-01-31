@@ -7,7 +7,7 @@ public partial class PunchArea : Area2D {
 	public override void _Process(double delta) {
 		base._Process(delta);
 
-		if (Input.IsActionJustPressed("attack")) {
+		if (Input.IsActionJustPressed("attack") && PlayerInput.allowInput) {
 			foreach (Node2D node in this.GetOverlappingBodies()) {
 				if (node is Entity e) {
 					e.Damage();

@@ -30,18 +30,15 @@ public partial class PlayerInput : Node {
 
 		if (allowInput) {
 
+			entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 			if (!entity.IsMoving()) {
 				if (Input.IsActionPressed("move_right")) {
-					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Right);
 				} else if (Input.IsActionPressed("move_up")) {
-					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Up);
 				} else if (Input.IsActionPressed("move_left")) {
-					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Left);
 				} else if (Input.IsActionPressed("move_down")) {
-					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Down);
 				}
 			}
