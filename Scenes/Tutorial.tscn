@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bqlqt04avk88w"]
+[gd_scene load_steps=21 format=4 uid="uid://bqlqt04avk88w"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="1_8i65c"]
 [ext_resource type="Script" uid="uid://cawdtodc6leqc" path="res://Scripts/LevelData.cs" id="1_mqud2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="5_brn58"]
 [ext_resource type="AudioStream" uid="uid://d1cebcbntf8j6" path="res://Audio/Sneak_VEcho.wav" id="6_fx2vl"]
 [ext_resource type="Script" uid="uid://cay34lyx78iap" path="res://Scripts/Utils/WinArea.cs" id="6_mqud2"]
+[ext_resource type="Texture2D" uid="uid://t60v1kgeenpn" path="res://Images/Environment/DropItLikeItsHot.png" id="7_kpk71"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_mqud2"]
 [ext_resource type="AudioStream" uid="uid://ds12xpac3yydb" path="res://Audio/ExitTune.wav" id="7_sswaw"]
 [ext_resource type="PackedScene" uid="uid://n2ixwur7yvuy" path="res://Prefabs/Mask1Item.tscn" id="8_sswaw"]
@@ -83,7 +84,7 @@ frame = 1
 
 [node name="Sprite2D4" type="Sprite2D" parent="Map/Node2D"]
 visibility_layer = 257
-position = Vector2(1960, -176)
+position = Vector2(1960, -192)
 texture = ExtResource("5_5gw1s")
 hframes = 3
 vframes = 2
@@ -121,6 +122,11 @@ flip_v = true
 hframes = 3
 vframes = 2
 frame = 5
+
+[node name="Sprite2D9" type="Sprite2D" parent="Map/Node2D"]
+visibility_layer = 257
+position = Vector2(1384, -192)
+texture = ExtResource("7_kpk71")
 
 [node name="Area2D" type="Area2D" parent="Map" node_paths=PackedStringArray("winSound")]
 position = Vector2(1752, -528)
