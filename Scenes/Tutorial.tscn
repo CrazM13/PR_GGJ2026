@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bqlqt04avk88w"]
+[gd_scene load_steps=19 format=4 uid="uid://bqlqt04avk88w"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="1_8i65c"]
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="2_m35rq"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bgm5ccufdtbyx" path="res://Images/Environment/Instructions.png" id="5_5gw1s"]
 [ext_resource type="Script" uid="uid://v4r7pt4jdqe4" path="res://Scripts/Utils/TilePaths/TilePathNode.cs" id="5_brn58"]
 [ext_resource type="AudioStream" uid="uid://d1cebcbntf8j6" path="res://Audio/Sneak_VEcho.wav" id="6_fx2vl"]
+[ext_resource type="Script" uid="uid://cay34lyx78iap" path="res://Scripts/Utils/WinArea.cs" id="6_mqud2"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="7_mqud2"]
+[ext_resource type="AudioStream" uid="uid://ds12xpac3yydb" path="res://Audio/ExitTune.wav" id="7_sswaw"]
 [ext_resource type="PackedScene" uid="uid://n2ixwur7yvuy" path="res://Prefabs/Mask1Item.tscn" id="8_sswaw"]
 [ext_resource type="PackedScene" uid="uid://v3us68kawo3u" path="res://Prefabs/Gate.tscn" id="9_kpk71"]
 [ext_resource type="PackedScene" uid="uid://c1tmqq7xbbagq" path="res://Prefabs/EmptyItem.tscn" id="10_8i65c"]
@@ -17,6 +19,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sgy12"]
 shader = ExtResource("3_m35rq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpk71"]
+size = Vector2(192, 448)
 
 [node name="Level" type="Node2D"]
 visibility_layer = 257
@@ -114,6 +119,21 @@ flip_v = true
 hframes = 3
 vframes = 2
 frame = 5
+
+[node name="Area2D" type="Area2D" parent="Map" node_paths=PackedStringArray("winSound")]
+position = Vector2(1752, -528)
+collision_mask = 32769
+script = ExtResource("6_mqud2")
+nextLevel = "res://Scenes/Level1.tscn"
+winSound = NodePath("AudioStreamPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Area2D"]
+position = Vector2(8, 48)
+shape = SubResource("RectangleShape2D_kpk71")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Map/Area2D"]
+stream = ExtResource("7_sswaw")
+bus = &"SFX"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_fx2vl")
