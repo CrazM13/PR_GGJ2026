@@ -14,9 +14,14 @@ public class Inventory {
 	}
 
 	public ItemData StoreItem(ItemData newItem) {
-		ItemData heldItem = this.storedItem;
-		this.storedItem = newItem;
-		return heldItem;
+		if (this.storedItem != null) {
+			ItemData heldItem = this.storedItem;
+			this.storedItem = newItem;
+			return heldItem;
+		} else {
+			this.storedItem = newItem;
+			return null;
+		}
 	}
 
 }

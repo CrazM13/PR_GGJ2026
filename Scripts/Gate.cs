@@ -10,6 +10,7 @@ public partial class Gate : Node2D {
 	[Export] private bool perminantUnlock = false;
 
 	private uint collisionData;
+	private bool isOpen = false;
 
 	public override void _Ready() {
 		base._Ready();
@@ -35,19 +36,23 @@ public partial class Gate : Node2D {
 	}
 
 	public void Open() {
+		if (isOpen) return;
 		sprite.Play("open");
 
 		audio.Play();
 		CameraController.Instance.FocusCameraOn(this.GlobalPosition, 3f);
+		isOpen = true;
 
 		collision.CollisionLayer = 0;
 	}
 
 	public void Close() {
+		if (!isOpen) return;
 		sprite.Play("close");
 
 		audio.Play();
 		CameraController.Instance.FocusCameraOn(this.GlobalPosition, 3f);
+		isOpen = false;
 
 		collision.CollisionLayer = collisionData;
 	}

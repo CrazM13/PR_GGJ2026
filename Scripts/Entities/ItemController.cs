@@ -8,11 +8,12 @@ public partial class ItemController : Node {
 	[Export] private Entity entity;
 	[Export] private ItemData item;
 	[Export] private Sprite2D itemSprite;
+	[Export] private bool persistant;
 
 	public override void _Ready() {
 		base._Ready();
 
-		itemSprite.Texture = item.carryingSprite;
+		if (item != null) itemSprite.Texture = item.carryingSprite;
 	}
 
 	public override void _Process(double delta) {
@@ -22,12 +23,18 @@ public partial class ItemController : Node {
 			ItemData lostItem = PlayerInput.inventory.StoreItem(this.item);
 			if (lostItem != null) {
 				item = lostItem;
+				itemSprite.SelfModulate = Colors.White;
 				itemSprite.Texture = lostItem.carryingSprite;
-				entity.SetHealth(1);
 			} else {
-				entity.QueueFree();
+				this.item = null;
+				if (persistant) {
+					itemSprite.SelfModulate = Colors.Black;
+				} else {
+					entity.QueueFree();
+				}
 			}
 
+			entity.SetHealth(1);
 			EmitSignal(SignalName.OnItemChange, item);
 		}
 	}
