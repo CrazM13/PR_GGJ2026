@@ -139,7 +139,7 @@ nextNode = NodePath("../Path1")
 [node name="Path1" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
 position = Vector2(3781, 310)
 script = ExtResource("11_ncjpd")
-nextNode = NodePath("../../PathA/Path2")
+nextNode = NodePath("../Path2")
 
 [node name="Path2" type="Node2D" parent="Paths/PathC" node_paths=PackedStringArray("nextNode")]
 position = Vector2(3784, 611)
@@ -305,10 +305,6 @@ position = Vector2(3578, -1766)
 
 [node name="AI" parent="Enemies/Enemy5" index="2" node_paths=PackedStringArray("pathNode")]
 pathNode = NodePath("../../../Paths/PathE/Path1")
-
-[connection signal="OnItemRemove" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
-[connection signal="OnItemRemove" from="MaskItem2/Node" to="Gate2" method="AttemptUnlock"]
-[connection signal="OnItemRemove" from="MaskItem2/Node" to="Gate3" method="AttemptUnlock"]
 
 [editable path="MaskItem"]
 [editable path="MaskItem2"]
