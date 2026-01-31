@@ -69,7 +69,6 @@ pathNode = NodePath("../../Paths/PathA/Path")
 
 [node name="Gate" parent="." instance=ExtResource("9_0wsr5")]
 position = Vector2(546, -1694)
-keyID = "mask1"
 
 [node name="Paths" type="Node2D" parent="."]
 

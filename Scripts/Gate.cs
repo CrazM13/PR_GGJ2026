@@ -20,7 +20,7 @@ public partial class Gate : Node2D {
 	}
 
 	public void AttemptUnlock(ItemData key) {
-		if (key.id == keyID) {
+		if ((key != null && key.id == keyID) || (string.IsNullOrEmpty(keyID) && key == null)) {
 			Open();
 		} else {
 			if (!perminantUnlock) Close();
