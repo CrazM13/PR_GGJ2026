@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://c00gl4njspq6f"]
+[gd_scene load_steps=17 format=4 uid="uid://c00gl4njspq6f"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8caec5wqpi" path="res://Prefabs/player.tscn" id="1_70df5"]
+[ext_resource type="Script" uid="uid://cawdtodc6leqc" path="res://Scripts/LevelData.cs" id="1_ycmr1"]
 [ext_resource type="TileSet" uid="uid://cjhob02o5h3o2" path="res://Data/TempleTiles.tres" id="2_ejprb"]
 [ext_resource type="Shader" uid="uid://c4lme5366inds" path="res://Shader/SeeThroughShader.tres" id="3_1je60"]
 [ext_resource type="TileSet" uid="uid://qebm80iwtbla" path="res://Data/CollisionTiles.tres" id="3_au75x"]
@@ -22,6 +23,7 @@ size = Vector2(192, 448)
 
 [node name="Level2" type="Node2D"]
 visibility_layer = 257
+script = ExtResource("1_ycmr1")
 
 [node name="Player" parent="." instance=ExtResource("1_70df5")]
 position = Vector2(347, 350)

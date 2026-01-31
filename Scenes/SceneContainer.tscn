@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxxb8646f2irj"]
+[gd_scene load_steps=11 format=3 uid="uid://cxxb8646f2irj"]
 
 [ext_resource type="Script" uid="uid://cjqj66cummmna" path="res://Scripts/SceneManagement/LoadLevel.cs" id="1_2j4cw"]
 [ext_resource type="Script" uid="uid://bmtetomt32wcd" path="res://Scripts/Utils/SharedViewport.cs" id="1_sr7tb"]
 [ext_resource type="Script" uid="uid://claul7ae5wkwq" path="res://Scripts/Utils/Camera/VirtualCamera.cs" id="3_4l0es"]
+[ext_resource type="Script" uid="uid://dljq1aauupfmb" path="res://Scripts/LightingSetting.cs" id="3_prfbf"]
 [ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="4_2j4cw"]
 [ext_resource type="Script" uid="uid://vycdl1mf3abn" path="res://Scripts/Utils/PauseMenu.cs" id="4_8jk6i"]
 
@@ -92,7 +93,7 @@ render_target_update_mode = 4
 [node name="CanvasLayer" type="CanvasLayer" parent="Lighting/SubViewportContainer/SubViewport"]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="Lighting/SubViewportContainer/SubViewport/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Lighting/SubViewportContainer/SubViewport/CanvasLayer" node_paths=PackedStringArray("levelContainer")]
 visibility_layer = 256
 z_index = 65
 z_as_relative = false
@@ -102,6 +103,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+script = ExtResource("3_prfbf")
+levelContainer = NodePath("../../../../../Main View/SubViewportContainer/SubViewport/Root")
 
 [node name="TextureRect" type="TextureRect" parent="Lighting/SubViewportContainer/SubViewport/CanvasLayer"]
 visibility_layer = 256
