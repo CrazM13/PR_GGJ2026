@@ -14,6 +14,8 @@ public partial class PlayerInput : Node {
 
 	private bool isAlive = true;
 
+	private const float SPRINT_MOD = 2f;
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -30,12 +32,16 @@ public partial class PlayerInput : Node {
 
 			if (!entity.IsMoving()) {
 				if (Input.IsActionPressed("move_right")) {
+					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Right);
 				} else if (Input.IsActionPressed("move_up")) {
+					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Up);
 				} else if (Input.IsActionPressed("move_left")) {
+					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Left);
 				} else if (Input.IsActionPressed("move_down")) {
+					entity.SetSpeedModifier(Input.IsActionPressed("move_sprint") ? SPRINT_MOD : 1);
 					entity.MoveTo(entity.GetTilePosition() + Vector2.Down);
 				}
 			}

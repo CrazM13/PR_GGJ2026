@@ -35,10 +35,15 @@ public partial class Entity : CharacterBody2D {
 	private const float KNOCKBACK_EASE_POWER = 3;
 	private const float MODULATE_FADE_SPEED = 3f;
 
+	// Modifier system
+	private float speedModifier = 1.0f;
+	private float currentSpeed = 0.0f;
+
 	public override void _Ready() {
 		SnapToGrid();
 		health = MaxHealth;
 		facingDirection = Vector2.Down;
+		currentSpeed = BaseSpeed;
 	}
 
 	public override void _Process(double delta) {
@@ -151,7 +156,7 @@ public partial class Entity : CharacterBody2D {
 		// Avoid division by zero
 		if (distanceToTarget > 0) {
 			// Calculate progress based on actual distance and speed
-			float progress = moveTimer * BaseSpeed / distanceToTarget;
+			float progress = moveTimer * currentSpeed / distanceToTarget;
 
 			if (progress >= 1.0f) {
 				FinishMovement();
@@ -322,6 +327,32 @@ public partial class Entity : CharacterBody2D {
 
 	public void SetHealth(int v) {
 		health = v;
+	}
+
+	/// <summary>
+	/// Set a speed modifier (e.g., 1.5f for 150% speed, 0.5f for 50% speed)
+	/// Only one modifier can be active at a time
+	/// </summary>
+	/// <param name="modifier">Speed modifier value (1.0 = base speed)</param>
+	public void SetSpeedModifier(float modifier) {
+		speedModifier = modifier;
+		currentSpeed = BaseSpeed * speedModifier;
+	}
+
+	/// <summary>
+	/// Reset speed modifier to base speed
+	/// </summary>
+	public void ResetSpeedModifier() {
+		speedModifier = 1.0f;
+		currentSpeed = BaseSpeed;
+	}
+
+	/// <summary>
+	/// Check if a speed modifier is currently active
+	/// </summary>
+	/// <returns>True if modifier is not at base speed</returns>
+	public bool IsSpeedModified() {
+		return speedModifier != 1.0f;
 	}
 
 	private void UpdateAnimation() {

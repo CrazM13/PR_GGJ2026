@@ -63,9 +63,11 @@ transitionPath = "uid://trmcmbumx5wm"
 
 [node name="Gate2" parent="." instance=ExtResource("9_xx40l")]
 position = Vector2(353, -1371)
+keyID = "mask3"
 
 [node name="Gate" parent="." instance=ExtResource("9_xx40l")]
 position = Vector2(1122, -345)
+keyID = "mask2"
 perminantUnlock = true
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("winSound")]
@@ -288,8 +290,8 @@ nextNode = NodePath("../Path1")
 [node name="MaskItem" parent="." instance=ExtResource("11_1je60")]
 position = Vector2(-2273, -134)
 
-[connection signal="OnItemChange" from="Map/MaskItem/Node" to="Gate2" method="AttemptUnlock"]
-[connection signal="OnItemChange" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
+[connection signal="OnItemRemove" from="Map/MaskItem/Node" to="Gate2" method="AttemptUnlock"]
+[connection signal="OnItemRemove" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
 
 [editable path="Map/MaskItem"]
 [editable path="Enemies/Enemy"]
