@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SFXResource" load_steps=3 format=3 uid="uid://d3kaci14kq7jq"]
+
+[ext_resource type="AudioStream" uid="uid://cx8nrerwys7s" path="res://Audio/SFX/Click.wav" id="1_1n0bs"]
+[ext_resource type="Script" uid="uid://du066jwdfkdjr" path="res://Scripts/Menu/SFXResource.cs" id="1_k4sg2"]
+
+[resource]
+script = ExtResource("1_k4sg2")
+SFX = ExtResource("1_1n0bs")
+AudioBus = &"SFX"
+metadata/_custom_type_script = "uid://du066jwdfkdjr"

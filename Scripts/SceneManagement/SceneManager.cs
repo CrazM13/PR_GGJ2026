@@ -31,6 +31,19 @@ public partial class SceneManager : Node {
 		transition.PlayTransitionIn();
 	}
 
+	public void LoadLevelScene(string scenePath) {
+		LoadLevel.levelToLoad = scenePath;
+		TransitionEffect transition = ResourceLoader.Load<PackedScene>(transitionPath).Instantiate<TransitionEffect>();
+
+		transition.TransitionInComplete += () => FullLoadScene("res://Scenes/SceneContainer.tscn", transition);
+		transition.TransitionInComplete += transition.PlayTransitionOut;
+		transition.TransitionOutComplete += () => { transition.QueueFree(); };
+
+		GetTree().Root.AddChild(transition);
+
+		transition.PlayTransitionIn();
+	}
+
 	public void ReloadScene() {
 		TransitionEffect transition = ResourceLoader.Load<PackedScene>(transitionPath).Instantiate<TransitionEffect>();
 

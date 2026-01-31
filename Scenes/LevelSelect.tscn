@@ -1,0 +1,244 @@
+[gd_scene load_steps=9 format=3 uid="uid://batihlkg46fe1"]
+
+[ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="1_b56eh"]
+[ext_resource type="Texture2D" uid="uid://bhd8rrfuvwijt" path="res://Images/Menu/TempleMenuBG.png" id="2_qwtt3"]
+[ext_resource type="Script" uid="uid://wxthtb4aadgj" path="res://Scripts/Menu/BetterButton.cs" id="3_rhsa1"]
+[ext_resource type="Resource" uid="uid://d3kaci14kq7jq" path="res://Data/Menu/SFX/HoverSFX.tres" id="4_pp72x"]
+[ext_resource type="Script" uid="uid://dg1k7jm1w656q" path="res://Scripts/Menu/ButtonEffects.cs" id="5_7eg28"]
+[ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="6_v7iwv"]
+[ext_resource type="AudioStream" uid="uid://bdgsunnxw2ww8" path="res://Audio/Sneak_VHorror.wav" id="7_anenh"]
+[ext_resource type="Script" uid="uid://dsk7wuro2rrko" path="res://Scripts/Utils/SyncedAudio.cs" id="8_hryoq"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b56eh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qwtt3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CenterContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[tornado radius=2.0 freq=10.0 connected=1][font_size=64]Level
+Select"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 96
+
+[node name="GridContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Button6" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button10" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button11" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "2"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button11"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button7" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "3"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button8" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "4"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button9" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "5"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="Button6" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Back
+"
+script = ExtResource("3_rhsa1")
+clickSFX = ExtResource("4_pp72x")
+hoverSFX = ExtResource("4_pp72x")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_7eg28")
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("6_v7iwv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_anenh")
+autoplay = true
+bus = &"Music"
+script = ExtResource("8_hryoq")
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button6" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Tutorial.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button10" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Level1.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button11" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Level2.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button7" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Level3.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button8" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Level4.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/GridContainer/Button9" to="SceneManager" method="LoadLevelScene" binds= ["res://Scenes/Level5.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button6" to="SceneManager" method="LoadScene" binds= ["res://Scenes/MainMenu.tscn"]]

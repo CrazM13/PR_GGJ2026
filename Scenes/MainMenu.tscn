@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cop8ip1e1fgvo"]
+[gd_scene load_steps=9 format=3 uid="uid://cop8ip1e1fgvo"]
 
 [ext_resource type="Texture2D" uid="uid://bhd8rrfuvwijt" path="res://Images/Menu/TempleMenuBG.png" id="1_8saeu"]
 [ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="1_tt5f1"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="2_853f1"]
 [ext_resource type="AudioStream" uid="uid://bdgsunnxw2ww8" path="res://Audio/Sneak_VHorror.wav" id="3_8saeu"]
+[ext_resource type="Script" uid="uid://wxthtb4aadgj" path="res://Scripts/Menu/BetterButton.cs" id="3_8um5k"]
+[ext_resource type="Resource" uid="uid://d3kaci14kq7jq" path="res://Data/Menu/SFX/HoverSFX.tres" id="4_xim88"]
 [ext_resource type="Script" uid="uid://dsk7wuro2rrko" path="res://Scripts/Utils/SyncedAudio.cs" id="5_df05h"]
+[ext_resource type="Script" uid="uid://dg1k7jm1w656q" path="res://Scripts/Menu/ButtonEffects.cs" id="5_koqhg"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -87,24 +90,76 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Play"
+script = ExtResource("3_8um5k")
+clickSFX = ExtResource("4_xim88")
+hoverSFX = ExtResource("4_xim88")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_koqhg")
 
 [node name="Button2" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Options"
+script = ExtResource("3_8um5k")
+clickSFX = ExtResource("4_xim88")
+hoverSFX = ExtResource("4_xim88")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_koqhg")
 
 [node name="Button3" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "???"
+text = "Level Select"
+script = ExtResource("3_8um5k")
+clickSFX = ExtResource("4_xim88")
+hoverSFX = ExtResource("4_xim88")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_koqhg")
 
 [node name="Button4" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quit"
+script = ExtResource("3_8um5k")
+clickSFX = ExtResource("4_xim88")
+hoverSFX = ExtResource("4_xim88")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("5_koqhg")
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("2_853f1")
@@ -118,4 +173,5 @@ script = ExtResource("5_df05h")
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button" to="SceneManager" method="LoadScene" binds= ["res://Scenes/SceneContainer.tscn"]]
 [connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button2" to="SceneManager" method="LoadScene" binds= ["res://Scenes/Options.tscn"]]
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button3" to="SceneManager" method="LoadScene" binds= ["res://Scenes/LevelSelect.tscn"]]
 [connection signal="pressed" from="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/GridContainer/Button4" to="SceneManager" method="Quit"]

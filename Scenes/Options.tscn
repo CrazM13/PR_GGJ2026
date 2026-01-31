@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0otknrsn06co"]
+[gd_scene load_steps=11 format=3 uid="uid://b0otknrsn06co"]
 
 [ext_resource type="Texture2D" uid="uid://bhd8rrfuvwijt" path="res://Images/Menu/TempleMenuBG.png" id="1_5hy3q"]
 [ext_resource type="Theme" uid="uid://cpcytcm2fbw1a" path="res://Data/Theme/MenuTheme.tres" id="1_cbhj7"]
 [ext_resource type="Script" uid="uid://dsby45kuyo40g" path="res://Scripts/SceneManagement/SceneManager.cs" id="2_cbhj7"]
 [ext_resource type="Script" uid="uid://cphg1v2vye2ud" path="res://Scripts/Utils/VolumeSlider.cs" id="3_6f4k2"]
 [ext_resource type="AudioStream" uid="uid://bdgsunnxw2ww8" path="res://Audio/Sneak_VHorror.wav" id="3_q4at1"]
+[ext_resource type="Script" uid="uid://wxthtb4aadgj" path="res://Scripts/Menu/BetterButton.cs" id="4_cja8r"]
+[ext_resource type="Resource" uid="uid://d3kaci14kq7jq" path="res://Data/Menu/SFX/HoverSFX.tres" id="5_pke3u"]
 [ext_resource type="Script" uid="uid://dsk7wuro2rrko" path="res://Scripts/Utils/SyncedAudio.cs" id="5_q4at1"]
+[ext_resource type="Script" uid="uid://dg1k7jm1w656q" path="res://Scripts/Menu/ButtonEffects.cs" id="6_pke3u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q4at1"]
 font_size = 24
@@ -144,6 +147,19 @@ busName = "SFX"
 [node name="Button" type="Button" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Back"
+script = ExtResource("4_cja8r")
+clickSFX = ExtResource("5_pke3u")
+hoverSFX = ExtResource("5_pke3u")
+
+[node name="ButtonEffect" type="Control" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("6_pke3u")
 
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("2_cbhj7")
