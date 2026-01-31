@@ -48,6 +48,9 @@ public partial class FollowEnemyController : Node {
 	}
 
 	public void AlertOfPlayer(Vector2 alertPoint) {
+
+		if (PlayerInput.inventory.GetStoredItem() == null) return;
+
 		if (currentState != EnemyState.ATTACK && currentState != EnemyState.DISABLED) {
 			currentState = EnemyState.ATTACK;
 		}

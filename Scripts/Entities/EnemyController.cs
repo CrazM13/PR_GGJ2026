@@ -6,6 +6,7 @@ public partial class EnemyController : Node {
 	[Export] private Entity entity;
 	[Export] private TilePathNode pathNode;
 	[Export] private StateIndicator stateIndicator;
+	[Export] private Line2D laserSight;
 	[Export, ExportGroup("Audio")] private AudioStreamPlayer2D gunSFX;
 
 	private ViewCone viewCone;
@@ -24,6 +25,8 @@ public partial class EnemyController : Node {
 
 	public override void _Ready() {
 		base._Ready();
+
+		laserSight.Visible = false;
 
 		if (pathNode != null) {
 			currentState = EnemyState.PATROL;
@@ -87,6 +90,12 @@ public partial class EnemyController : Node {
 		stateTimeRemaining -= delta;
 
 		entity.FaceDirection(alertPoint - entity.GlobalPosition);
+		
+		if (laserSight != null) {
+			laserSight.Visible = true;
+			Vector2 directon = alertPoint - laserSight.GlobalPosition;
+			laserSight.Points = [Vector2.Zero, directon * 100];
+		}
 
 		if (stateTimeRemaining < 0) {
 			if (viewCone.CanSeePlayer()) {
@@ -117,6 +126,8 @@ public partial class EnemyController : Node {
 
 	private void OnIdle(float delta) {
 		stateTimeRemaining -= delta;
+
+		laserSight.Visible = false;
 
 		if (stateTimeRemaining < 0) {
 			currentState = EnemyState.PATROL;

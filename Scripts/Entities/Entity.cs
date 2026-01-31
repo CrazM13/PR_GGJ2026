@@ -39,6 +39,8 @@ public partial class Entity : CharacterBody2D {
 	private float speedModifier = 1.0f;
 	private float currentSpeed = 0.0f;
 
+	public static bool allowMovement = true;
+
 	public override void _Ready() {
 		SnapToGrid();
 		health = MaxHealth;
@@ -49,14 +51,16 @@ public partial class Entity : CharacterBody2D {
 	public override void _Process(double delta) {
 		UpdateVisualEffects(delta);
 
-		if (shouldBounce) {
-			HandleBounceAnimation(delta);
-		} else if (isKnockedBack) {
-			HandleKnockback(delta);
-		} else if (isTurning) {
-			HandleTurn(delta);
-		} else if (isMoving) {
-			HandleMovement(delta);
+		if (allowMovement) {
+			if (shouldBounce) {
+				HandleBounceAnimation(delta);
+			} else if (isKnockedBack) {
+				HandleKnockback(delta);
+			} else if (isTurning) {
+				HandleTurn(delta);
+			} else if (isMoving) {
+				HandleMovement(delta);
+			}
 		}
 
 		// Update animation based on movement state and facing direction

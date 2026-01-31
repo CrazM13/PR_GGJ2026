@@ -66,6 +66,7 @@ public partial class CameraController : Node2D {
 				// Resume game
 				GetTree().Paused = false;
 				PlayerInput.allowInput = true;
+				Entity.allowMovement = true;
 
 				// Process next queued operation
 				if (_operationQueue.Count > 0) {
@@ -121,6 +122,7 @@ public partial class CameraController : Node2D {
 	private void StartCameraAnimation(Vector2 targetPosition, float pauseDuration) {
 		_originalPosition = MainCamera.GlobalPosition;
 		PlayerInput.allowInput = false;
+		Entity.allowMovement = false;
 
 		_isAnimating = true;
 		_movingToTarget = true;

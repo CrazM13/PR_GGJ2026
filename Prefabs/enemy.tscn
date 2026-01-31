@@ -1,11 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3h23qn75o7n0"]
+[gd_scene load_steps=31 format=3 uid="uid://d3h23qn75o7n0"]
 
 [ext_resource type="Script" uid="uid://d1r6rs6nekv2t" path="res://Scripts/Entities/Entity.cs" id="1_80imi"]
 [ext_resource type="Texture2D" uid="uid://b0fs8mw3s2y1x" path="res://Images/Characters/Enemies/Enemy_1.png" id="2_osttl"]
 [ext_resource type="Script" uid="uid://b3n383hr75i0b" path="res://Scripts/Entities/ViewCone.cs" id="3_g7nnu"]
 [ext_resource type="Script" uid="uid://cm3e48fxbq8yd" path="res://Scripts/Entities/EnemyController.cs" id="4_kuc4i"]
 [ext_resource type="Texture2D" uid="uid://dc63hvy4soxan" path="res://Images/Environment/light.tres" id="5_g7nnu"]
-[ext_resource type="AudioStream" uid="uid://cbt6eormdlng2" path="res://Audio/SFX/Breathing.wav" id="5_n7q57"]
 [ext_resource type="AudioStream" uid="uid://b5qt8jf6i3mq8" path="res://Audio/SFX/Gun.wav" id="6_80imi"]
 [ext_resource type="PackedScene" uid="uid://7ggdkh7s1b6w" path="res://Prefabs/StateAnimator.tscn" id="7_osttl"]
 
@@ -215,10 +214,11 @@ animation = &"idle_down"
 autoplay = "idle_down"
 offset = Vector2(0, -16)
 
-[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "stateIndicator", "gunSFX")]
+[node name="AI" type="Node" parent="." node_paths=PackedStringArray("entity", "stateIndicator", "laserSight", "gunSFX")]
 script = ExtResource("4_kuc4i")
 entity = NodePath("..")
 stateIndicator = NodePath("../StateAnimator")
+laserSight = NodePath("../Line2D")
 gunSFX = NodePath("../Audio/Gunshot")
 
 [node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("enemy", "display", "collisionPolygon")]
@@ -250,15 +250,17 @@ texture = ExtResource("5_g7nnu")
 
 [node name="Audio" type="Node2D" parent="."]
 
-[node name="IdleBreathing" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("5_n7q57")
-volume_db = -5.0
-autoplay = true
-max_distance = 1024.0
-bus = &"SFX"
-
 [node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("6_80imi")
 bus = &"SFX"
 
 [node name="StateAnimator" parent="." instance=ExtResource("7_osttl")]
+position = Vector2(0, -32)
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+visibility_layer = 257
+z_index = 50
+z_as_relative = false
+width = 4.0
+default_color = Color(1, 0, 0, 1)
