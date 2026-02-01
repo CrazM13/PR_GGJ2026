@@ -19,6 +19,7 @@ public partial class Entity : CharacterBody2D {
 	private Vector2 startingPosition;
 	private bool isMoving = false;
 	private float moveTimer = 0.0f;
+	private float totalMovementTime = 0.0f;
 
 	private bool shouldBounce = false;
 	private bool isKnockedBack = false;
@@ -75,7 +76,7 @@ public partial class Entity : CharacterBody2D {
 	}
 
 	private void HandleBounceAnimation(double delta) {
-		moveTimer += (float) delta;
+		moveTimer += (float) delta * speedModifier;
 		float bounceProgress = moveTimer / BOUNCE_DURATION;
 
 		if (bounceProgress >= 1.0f) {
@@ -93,7 +94,7 @@ public partial class Entity : CharacterBody2D {
 	}
 
 	private void HandleKnockback(double delta) {
-		knockbackTimer += (float) delta;
+		knockbackTimer += (float) delta * speedModifier;
 
 		if (knockbackTimer >= knockbackDuration) {
 			CompleteKnockback();
@@ -152,20 +153,25 @@ public partial class Entity : CharacterBody2D {
 	}
 
 	private void HandleMovement(double delta) {
-		moveTimer += (float) delta;
-
 		// Calculate the distance between start and target
 		Vector2 distanceVector = targetPosition - startingPosition;
 		float distanceToTarget = distanceVector.Length();
 
 		// Avoid division by zero
 		if (distanceToTarget > 0) {
-			// Calculate progress based on actual distance and speed
-			float progress = moveTimer * currentSpeed / distanceToTarget;
+			// Calculate total movement time based on current speed
+			totalMovementTime = distanceToTarget;
+
+			// Update timer with speed modifier
+			moveTimer += (float) delta * currentSpeed;
+
+			// Calculate progress based on time elapsed
+			float progress = moveTimer / totalMovementTime;
 
 			if (progress >= 1.0f) {
 				FinishMovement();
 			} else {
+				// Use the same lerp calculation but with proper time-based progress
 				GlobalPosition = startingPosition.Lerp(targetPosition, progress);
 			}
 		} else {
@@ -215,6 +221,7 @@ public partial class Entity : CharacterBody2D {
 		startingPosition = GlobalPosition;
 		isMoving = true;
 		moveTimer = 0.0f;
+		totalMovementTime = 0.0f; // Reset total time
 	}
 
 	private void PerformBounceAnimation(Vector2 targetPosition) {
@@ -268,11 +275,8 @@ public partial class Entity : CharacterBody2D {
 
 		// Optional Effect
 		if (bloodParticles != null) {
-
 			Node2D effectRoot = bloodParticles.Instantiate<Node2D>();
-
 			AddChild(effectRoot);
-
 			effectRoot.GlobalPosition = this.GlobalPosition;
 			effectRoot.LookAt(effectRoot.GlobalPosition - direction);
 
@@ -296,6 +300,7 @@ public partial class Entity : CharacterBody2D {
 		GlobalPosition = targetPixel;
 		isMoving = false;
 		moveTimer = 0.0f;
+		totalMovementTime = 0.0f;
 	}
 
 	private void FinishMovement() {
@@ -303,6 +308,7 @@ public partial class Entity : CharacterBody2D {
 		SnapToGrid();
 		isMoving = false;
 		moveTimer = 0.0f;
+		totalMovementTime = 0.0f;
 	}
 
 	private void SnapToGrid() {
