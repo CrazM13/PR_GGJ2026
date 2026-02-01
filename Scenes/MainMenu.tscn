@@ -64,7 +64,8 @@ layout_mode = 2
 [node name="Label" type="RichTextLabel" parent="MarginContainer/CenterContainer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[tornado radius=2.0 freq=10.0 connected=1][font_size=64]Title"
+text = "[tornado radius=2.0 freq=10.0 connected=1][font_size=48]Masked
+Expedition"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
