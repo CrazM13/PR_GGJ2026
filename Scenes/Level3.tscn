@@ -306,6 +306,10 @@ position = Vector2(3578, -1766)
 [node name="AI" parent="Enemies/Enemy5" index="2" node_paths=PackedStringArray("pathNode")]
 pathNode = NodePath("../../../Paths/PathE/Path1")
 
+[connection signal="OnItemRemove" from="MaskItem/Node" to="Gate" method="AttemptUnlock"]
+[connection signal="OnItemRemove" from="MaskItem2/Node" to="Gate2" method="AttemptUnlock"]
+[connection signal="OnItemRemove" from="MaskItem2/Node" to="Gate3" method="AttemptUnlock"]
+
 [editable path="MaskItem"]
 [editable path="MaskItem2"]
 [editable path="Enemies/Enemy"]
